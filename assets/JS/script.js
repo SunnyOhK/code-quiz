@@ -5,6 +5,7 @@ var secondsLeft = 61;
 
 // QUESTION & ANSWER CONTAINER VARIABLES
 var questionE1 = document.querySelector("question");
+console.log(question);
 
 // CREATE ARRAY FOR QUESTIONS
 var questions = [
