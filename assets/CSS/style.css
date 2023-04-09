@@ -2,20 +2,26 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+header {
+    background-size: cover;
+    background: url(.assets/images/background-print.png) center center fixed;
+    border-bottom: 2px solid black;
+    background-color: rgb(102, 103, 104);
+    padding-top: 10px;
+}
+
 h1 {
     font-size: 45px;
     text-align: center;
-    background-color: rgb(31, 118, 211);
     color: white;
     padding-top: 30px;
     padding-bottom: 30px;
     text-shadow: 0px 3px 3px rgb(65, 64, 64);
 }
 
-.time-score-container {
+.time-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row-reverse;
 }
 
 .time {

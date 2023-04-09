@@ -12,30 +12,33 @@
 <body>
     <header>
         <h1>QUIZ &nbsp; TIME!</h1>
-        </header>
-    <div class="time-score-container">
-        <a class="high-scores">View High Scores</a>
+    </header>
+
+    <div class="time-container" id="home">
         <a class="time" style="text-align:right;"></a>
     </div>
-    <img src="./assets/baby-elephant.png" class="img-container">
+    <img src="./assets/images/baby-elephant.png" class="img-container">
     <div class="opener" id="show">
         <h2>Instructions</h2>
         <p>You have 60 seconds to answer 6 questions about elephants!</p>
         <p><b>Remember...</b> each wrong answer will take 5 seconds off the timer.</p>
-        <button class="start-btn" id="start-game">Let's Go!</button>
+        <!-- <button class="start-btn" id="start-game">Let's Go!</button> -->
     </div>
 
     <div id="question-container" class="hide">
         <div class="container questions">
             <div id="question"></div>
-            <div id="answer-buttons" class="btn-grid"></div>
-        </div>
-    </div>
-    <div></div>
+            <div id="answerOptions" class="btn-grid">
+            </div>
+            <div>
+                <a class="btn" href="/game.html">Play!</a>
+                <a class="btn" href="/highscores.html">View High Scores</a>
+            </div>
+</body>
 
-    <footer>You are correct!</footer>
-    <p id="main"></p>
-    <script src="./assets/js/script.js"></script>
+<footer>You are correct! | Oooooh WRONG!</footer>
+<p id="main"></p>
+<script src="./assets/js/script.js"></script>
 
 </body>
 
