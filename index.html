@@ -14,7 +14,8 @@
         <h1>QUIZ &nbsp; TIME!</h1>
     </header>
 
-    <div class="time-container" id="home">
+    <div class="time-score-container" id="home">
+        <a class="high-scores" style="text-align:left;">View High Scores</a>
         <a class="time" style="text-align:right;"></a>
     </div>
     <img src="./assets/images/baby-elephant.png" class="img-container">
@@ -22,18 +23,18 @@
         <h2>Instructions</h2>
         <p>You have 60 seconds to answer 6 questions about elephants!</p>
         <p><b>Remember...</b> each wrong answer will take 5 seconds off the timer.</p>
-        <!-- <button class="start-btn" id="start-game">Let's Go!</button> -->
     </div>
 
-    <div id="question-container" class="hide">
+    <div class="question-container" id="hidden">
         <div class="container questions">
-            <div id="question"></div>
-            <div id="answerOptions" class="btn-grid">
-            </div>
-            <div>
-                <a class="btn" href="/game.html">Play!</a>
-                <a class="btn" href="/highscores.html">View High Scores</a>
-            </div>
+            <p class="choice-prefix">a.</p>
+            <p class="answers-container">Text here</p>
+        </div>
+    </div>
+
+    <div id="btn-container">
+        <a class="button" href="/game.html">Play!</a>
+    </div>
 </body>
 
 <footer>You are correct! | Oooooh WRONG!</footer>

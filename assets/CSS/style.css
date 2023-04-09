@@ -14,26 +14,29 @@ h1 {
     font-size: 45px;
     text-align: center;
     color: white;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     text-shadow: 0px 3px 3px rgb(65, 64, 64);
 }
 
-.time-container {
+.time-score-container {
     display: flex;
-    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
 }
 
 .time {
-    font-size: 40px;
-    padding-right: 100px;
-    padding-left: 580px;
+    font-size: 35px;
+    padding-right: 150px;
+    padding-left: 500px;
+    padding-top: 5px;
 }
 
 .high-scores {
     font-size: 35px;
-    padding-left: 100px;
-    padding-right: 580px;
+    padding-left: 150px;
+    padding-right: 500px;
+    padding-top: 5px;
 }
 
 img {
@@ -55,24 +58,68 @@ h2 {
 .opener {
     text-align: center;
     font-size: 25px;
-    padding-bottom: 50px;
+    padding-bottom: 1px;
 }
 
 footer {
     font-size: 35px;
     text-align: center;
     border-top: 2px solid grey;
+    margin-top: 20px;
     padding-top: 25px;
 }
 
-button {
+#btn-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    width: 20rem;
     margin-top: 20px;
+    text-align: center;
     background-color: rgb(31, 118, 211);
     color: white;
-    font-weight: bold;
-    font-size: 33px;
+    text-decoration: none;
+    font-size: 28px;
     padding: 20px 30px 20px 30px;
     border-radius: 15px;
     box-shadow: 0px 5px 5px rgb(65, 64, 64);
 }
+
+.button:hover {}
+
+.button[disabled]:hover {
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* #hidden { */
+    /* display: none;
+} */
+
+.choice-prefix {
+    padding: 2px 3px;
+    background-color: rgb(3, 59, 76);
+    color: white;
+}
+
+.answers-container {
+    display: flex;
+    width: 50rem;
+    margin-top: .5rem;
+    font-size: 20px;
+    text-align: left;
+    background-color: white;
+    color: black;
+    border-radius: 15px;
+}
+
+.answers-container:hover {
+
+}
+
+
 
