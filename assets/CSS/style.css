@@ -76,11 +76,11 @@ footer {
     align-items: center;
 }
 
-.button {
+.btn-start {
     width: 20rem;
     margin-top: 20px;
     text-align: center;
-    background-color: rgb(31, 118, 211);
+    background-color: rgb(8, 176, 39);
     color: white;
     text-decoration: none;
     font-size: 28px;
@@ -89,37 +89,90 @@ footer {
     box-shadow: 0px 5px 5px rgb(65, 64, 64);
 }
 
-.button:hover {}
+.btn-start:hover {
+    background-color: rgba(8, 176, 39, 0.558);
+    color: rgb(65, 64, 64);
+    transition: 0.4s;
+}
 
-.button[disabled]:hover {
+.btn[disabled]:hover {
     cursor: not-allowed;
     transform: none;
 }
 
 /* #hidden { */
-    /* display: none;
+/* display: none;
 } */
 
-.choice-prefix {
+/* .choice-prefix {
     padding: 2px 3px;
     background-color: rgb(3, 59, 76);
     color: white;
+} */
+
+.questions-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10%;
+    margin-left: 30%;
 }
 
 .answers-container {
     display: flex;
+    flex-direction: column;
     width: 50rem;
     margin-top: .5rem;
-    font-size: 20px;
+}
+
+.questions {
+    font-size: 30px;
     text-align: left;
-    background-color: white;
-    color: black;
+
+}
+
+.answers {
+    font-size: 20px;
+    width: 40rem;
+    padding: 10px 30px 10px 15px;
+    margin-bottom: 9px;
+    text-align: left;
+    background-color: rgb(74, 28, 126);
+    color: white;
     border-radius: 15px;
+    list-style-type: none;
 }
 
-.answers-container:hover {
-
+.answers:hover {
+    background-color: rgba(74, 28, 126, 0.498);
 }
 
 
+/* CODE I MIGHT NEED LATER */
 
+/* #btn-container-secondary {
+    display: flex;
+    justify-content: center;
+    /* align-items: center;
+}
+*/
+/* .btn-secondary {
+    width: 16rem;
+    margin-top: 20px;
+    margin-left: 8px;
+    margin-right: 8px;
+    text-align: center;
+    background-color: rgb(31, 118, 211);
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+    padding: 10px 30px 10px 30px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 5px rgb(65, 64, 64);
+} */
+
+/* .btn-secondary:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+    background-color: rgba(31, 118, 211, 0.7);
+    color: rgb(65, 64, 64);
+} */ 
