@@ -7,75 +7,30 @@ var secondsLeft = 91;
 var questionE1 = document.querySelector("question");
 console.log(question);
 
-// CREATE ARRAY FOR QUESTIONS
-var questions = [
-    {
-        question: "Which of the following is a function of the elephant's trunk?",
-        answers: {
-            a: "To suck up water for drinking and cooling",
-            b: "To use as a snorkel",
-            c: "To grab items that are too large to inhale",
-            d: "To communicate (trumpet warnings and greet one another)",
-            e: "All are true",
-        },
-        correctAnswer: "e"
-    },
-    {
-        question: "On which continent is the elephant not native/ found in the wild?",
-        answers: {
-            a: "South America",
-            b: "Africa",
-            c: "Asia",
-            d: "Elephants are native to all 3 continents",
-            e: "Elephants are not native to any of these continents",
-        },
-        correctAnswer: "a"
-    },
-    {
-        question: "Which of the following is the largest living elephant species?",
-        answers: {
-            a: "Asian",
-            b: "African Savanna",
-            c: "African Forest",
-            d: "Woolly Mammoth",
-            e: "Mr. Snuffleupagus",
-        },
-        correctAnswer: "b"
-    },
-    {
-        question: "How much does a baby elephant normally weigh at birth?",
-        answers: {
-            a: "100 - 150 lbs",
-            b: "200 - 250 lbs",
-            c: "300 - 350 lbs",
-            d: "400 - 500 lbs",
-            e: "up to 800 lbs depending on the species",
-        },
-        correctAnswer: "b"
-    },
-    {
-        question: "Which of the following poses the greatest threat to elephants' survival?",
-        answers: {
-            a: "Large feline predators (ex. lions)",
-            b: "Declining birth rates",
-            c: "Humans (poaching and habitat destruction)",
-            d: "Mudslides",
-            e: "Elephant populations are not declining",
-        },
-        correctAnswer: "c"
-    },
-    {
-        question: "Which of the following is a common (true) claim about elephants?",
-        answers: {
-            a: "Elephants are afraid of mice",
-            b: "Elephants have the sharpest eyesight in the animal kingdom",
-            c: "Elephants love performing in the circus",
-            d: "An elephant a day keeps the doctor away",
-            e: "An elephant never forgets",
-        },
-        correctAnswer: "e"
-    },
-]
+// CREATE VARIABLES FOR QUESTIONS AND ARRAYS FOR ANSWERS
+var question1 = "Which of the following is a function of the elephant's trunk?";
+var answers1 = ["To suck up water for drinking and cooling", "To use as a snorkel", "To grab items that are too large to inhale", "To communicate (trumpet warnings and greet one another)", "All are true"];
+var correctAnswer1 = "All are true";
+
+var question2 = "On which continent is the elephant not native/ found in the wild?";
+var answers2 = ["South America", "Africa", "Asia", "Elephants are native to all 3 continents", "Elephants are not native to any of these continents"];
+var correctAnswer2 = "South America";
+
+var question3 = "Which of the following is the largest living elephant species?";
+var answers3 = ["Asian", "African Savanna", "African Forest", "Woolly Mammoth", "Mr. Snuffleupagus"];
+var correctAnswer3 = "African Savanna";
+
+var question4 = "How much does a baby elephant normally weigh at birth?";
+var answers4 = ["100 - 150 lbs", "200 - 250 lbs", "300 - 350 lbs", "400 - 500 lbs", "up to 800 lbs depending on the species"];
+var correctAnswer4 = "200 - 250 lbs";
+
+var question5 = "Which of the following poses the greatest threat to elephants' survival?";
+var answers5 = ["Large feline predators (ex. lions)", "Declining birth rates", "Humans (poaching and habitat destruction)", "Mudslides", "Elephant populations are not declining"];
+var correctAnswer5 = "Humans (poaching and habitat destruction)";
+
+var question6 = "Which of the following is a common (true) claim about elephants?";
+var answers6 = ["Elephants are afraid of mice", "Elephants have the sharpest eyesight in the animal kingdom", "Elephants love performing in the circus", "An elephant a day keeps the doctor away", "An elephant never forgets"];
+var correctAnswer6 = "An elephant never forgets";
 
 var playerPoints = 0;
 
