@@ -1,7 +1,7 @@
 // TIMER VARIABLES
 var timeEl = document.querySelector(".time");
 var mainEl = document.getElementById("main");
-var secondsLeft = 61;
+var secondsLeft = 91;
 
 // QUESTION & ANSWER CONTAINER VARIABLES
 var questionE1 = document.querySelector("question");
@@ -76,6 +76,12 @@ var questions = [
         correctAnswer: "e"
     },
 ]
+
+var playerPoints = 0;
+
+function loadQuestion() {
+
+};
 
 // BUTTON VARIABLES BY ID
 var btnStartE1 = document.querySelector("#start-game");
