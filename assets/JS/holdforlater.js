@@ -88,7 +88,7 @@ currentQuestion.answers.forEach(function (answer, i) {
     // answers and events for answers
     answerButton.onclick = chooseAnswer;
     answersEl.appendChild(answerButton);
-    
+
 // FROM THE CLASS CHAT
     // answers and events for answers
     answerButton.onclick = chooseAnswer;
@@ -97,3 +97,9 @@ currentQuestion.answers.forEach(function (answer, i) {
     // clear old stuff
     answersEl.textContent = "";
     // clearout at the beginning of my getQuestion function
+
+    // BUTTON VARIABLES BY ID
+    var btnStartE1 = document.querySelector("#start-game");
+    var btnSubmitE1 = document.querySelector("#submit-answer");
+    var btnSkipE1 = document.querySelector("#skip-question");
+    var btnClearE1 = document.querySelector("#clear-score");
