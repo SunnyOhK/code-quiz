@@ -24,7 +24,7 @@
     </div>
     <div class="opener">
         <h2>Instructions</h2>
-        <p>You have 75 seconds to answer 6 questions about elephants!</p>
+        <p>You have 90 seconds to answer 6 questions about elephants!</p>
         <p><b>Remember...</b> each wrong answer will take 10 seconds off the timer.</p>
     </div>
     <div id="btn-container">
@@ -34,13 +34,14 @@
 
     <section class="questions-container hide">
         <img src="./assets/images/elephant-trunk.png" class="questions-img">
+        
         <h3 class="question">Question Placeholder</h3>
         <ul class="answers-container">
-            <li class="answers-btn" id="answerTextA">Answer 1</li>
-            <li class="answers-btn" id="answerTextB">Answer 2</li>
-            <li class="answers-btn" id="answerTextC">Answer 3</li>
-            <li class="answers-btn" id="answerTextD">Answer 4</li>
-            <li class="answers-btn" id="answerTextE">Answer 5</li>
+            <li class="answers-btn" id="choices" data-number="1">Choice1</li>
+            <li class="answers-btn" id="choices" data-number="2">Choice2</li>
+            <li class="answers-btn" id="choices" data-number="3">Choice3</li>
+            <li class="answers-btn" id="choices" data-number="4">Choice4</li>
+            <li class="answers-btn" id="choices" data-number="5">Choice5</li>
         </ul>
         <!-- <div id="btn-container-secondary">
         <button class="btn-secondary">Submit</button>
@@ -53,7 +54,7 @@
 
     <section class="score-container hide">
         <h2>Your final score:</h2>
-        <p class="score-display">0</p>
+        <p id="score-display">0</p>
         <form>
             <label>Enter your initials to save your score:&nbsp&nbsp</label>
             <input type="text" id="initials-field" maxlength="4" placeholder="    Enter your initials" />
