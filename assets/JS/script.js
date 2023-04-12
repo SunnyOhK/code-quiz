@@ -1,6 +1,5 @@
 // TIMER VARIABLES
 var timeEl = document.querySelector(".timer");
-var secondsLeft = 75;
 
 // QUESTION & ANSWER CONTAINER VARIABLES
 var questionE1 = document.querySelector(".question");
@@ -23,8 +22,13 @@ var leaderboardEl = document.querySelector(".highscores-container");
 var startBtn = document.querySelector(".btn-start");
 var nextBtn = document.querySelector(".next-btn");
 var submitBtn = document.querySelector(".submit-btn");
-var highScoreBtn = document.getElementById("Play Again");
-var clearScoreBtn = document.getElementById("Clear Scores");
+var highScoreBtn = document.getElementById("play-again");
+var clearScoreBtn = document.getElementById("clear-scores");
+var answerTextBoxA = document.getElementById("answerTextA");
+var answerTextBoxA = document.getElementById("answerTextB");
+var answerTextBoxA = document.getElementById("answerTextC");
+var answerTextBoxA = document.getElementById("answerTextD");
+var answerTextBoxA = document.getElementById("answerTextE");
 
 // CREATE VARIABLES FOR QUESTIONS AND ARRAYS FOR ANSWERS
 var questionA = "Which of the following is a function of the elephant's trunk?";
@@ -53,26 +57,48 @@ var correctAnswer6 = "An elephant never forgets";
 
 var playerPoints = 0;
 
-function loadQuestion() {
+// TRIGGER STARTING EVENT LISTENERS FOR TIMER AND QUESTIONS
+// addEventListerner(event, function)
+startBtn.addEventListener("click", startQuiz);
+nextBtn.addEventListener("click", ???);
 
-};
-
-
+// SET TIMER TO START ON CLICK AT START OF QUIZ
 function setTime() {
+    var secondsLeft = 75;
+
     // Sets interval in variable
     var timerInterval = setInterval(function () {
         secondsLeft--;
-        timeEl.textContent = secondsLeft + " seconds left";
+        timeEl.textContent = secondsLeft + "s left";
 
         if (secondsLeft === 0) {
             // Stops execution of action at set interval.
             clearInterval(timerInterval);
             // Calls function to create and send 'game over' message
-            sendMessage();
+            timeEl.displayMessage = "Time's Up!";
+            introPageEl();
         }
-
     }, 1000);
 }
+
+// START QUIZ
+function startQuiz() {
+    introPageEl.setAttribute("hide");
+
+
+}
+
+
+
+
+
+
+function loadQuestion() {
+
+};
+
+
+
 
 function sendMessage() {
     timeEl.textContent = "Game over!";
