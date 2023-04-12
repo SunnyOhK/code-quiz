@@ -64,3 +64,36 @@
     //     },
     //     correctAnswer: "e"
     // },
+
+
+USE THIS: 
+    // Immediately hide the clear button
+    clearEl.hide();
+
+// Create button
+var letterBtn = $('<button>');
+// Assign style to the button
+letterBtn.addClass('letter-button btn btn-info');
+// Assign the letter to the data-letter attribute
+letterBtn.attr('data-letter', letters[i]);
+
+// answers populate on buttons, .forEach loop
+currentQuestion.answers.forEach(function (answer, i) {
+    var answerButton = document.createElement("button");
+    answerButton.setAttribute("class", "answer");
+    answerButton.setAttribute("value", answer);
+    // i+1 to show numbers 1-4 since array starts at 0.
+    answerButton.textContent = i + 1 + ". " + answer;
+
+    // answers and events for answers
+    answerButton.onclick = chooseAnswer;
+    answersEl.appendChild(answerButton);
+    
+// FROM THE CLASS CHAT
+    // answers and events for answers
+    answerButton.onclick = chooseAnswer;
+    answersEl.appendChild(answerButton);
+
+    // clear old stuff
+    answersEl.textContent = "";
+    // clearout at the beginning of my getQuestion function
