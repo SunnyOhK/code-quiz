@@ -12,7 +12,7 @@
 <body>
     <header>
         <div class="time-score-container" id="home">
-            <a class="high-scores" style="text-align:left;">View High Scores</a>
+            <a class="highscore-label" style="text-align:left;">View High Scores</a>
             <a class="timer" style="text-align:right;">Time: ____ </a>
         </div>
     </header>
@@ -56,16 +56,21 @@
         <p class="score-display">0</p>
         <form>
             <label>Enter your initials to save your score:&nbsp&nbsp</label>
-            <input type="text" id="initials-field" maxlength="4" placeholder="    Enter your initials"/>
+            <input type="text" id="initials-field" maxlength="4" placeholder="    Enter your initials" />
             <button class="submit-btn">Submit</button>
         </form>
     </section>
-</body>
 
-<footer class="hide">You are correct! | Oooooh WRONG!</footer>
-<p id="main"></p>
-<script src="./assets/js/script.js"></script>
+    <section class="highscores-container">
+        <h5>HIGH SCORES</h5>
+        <div class="scoreboard"></div>
+        <div class="button-box">
+            <button class="hs-btn">Play Again</button>
+            <button class="hs-btn">Clear Scores</button>
+        </div>
+    </section>
 
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
