@@ -1,4 +1,54 @@
-//   {
+// question code quiz, questions displayed dynamically
+// when OfflineAudioCompletionEvent, score is shown and redirect to highscores history
+
+// function to start quiz
+// function to display questions and answers (loops, iterators)
+// function to check correct answers 
+// function to stop timer redirect to a new page
+
+// VAriables
+// score, questions, question answerChoicesA, question answers
+    // var score = num | var questions = [{}, {}, {}]
+    // question{question: "",
+    //          answer: "",
+    //              choices: ["", "", ""]
+    //                 }
+
+// User is presented with a single question, user chooses an answer from radio buttons, answer is checked, if correct give 1 point by ++
+//  Loop through the questions arr to append each question to the page (outer for loop to loop through questions + inner for loop to loop through the answer choices)
+//          OR
+
+// var iterator = 0;  (this would grab the next question in line)
+    // for loop that appends choices to the page
+    // question[0]
+    // questions[0].question --> append questions to the page
+        //inside of a for loop
+        // questions[0].choices[i] --> append answers to the page
+    // if statement that checks for user input and compares to questions[0].answer if correct score++, iterator++, affect timer
+    // if incorrect, subtract from the timer, iterator++
+    // Clear the page, append new question
+    // validate answers when radio buttons are clicked to determine true or false
+        // how to determine which button is selected --> use jQuery --> if( $('#radio').is(':checked') ){}
+
+// TIMER : DECLARE THIS GLOBALLY
+// var timeLeft = 90;
+// setInterval(timeTick, 1000);
+// function timeTick(){
+//     timeLeft--;
+//     timer.text = timeLeft
+
+//     if(timeLeft <=0){
+//         endQuiz();
+//     if(endQuizBtn = clicked){
+//             stopTimer();
+// }
+//     }
+// }
+
+!! renderNextQuestion() !!
+
+
+// {
 //         question: "Which of the following is a function of the elephant's trunk?",
 //         answers: {
 //             a: "To suck up water for drinking and cooling",
@@ -103,3 +153,10 @@ currentQuestion.answers.forEach(function (answer, i) {
     var btnSubmitE1 = document.querySelector("#submit-answer");
     var btnSkipE1 = document.querySelector("#skip-question");
     var btnClearE1 = document.querySelector("#clear-score");
+
+
+// var answerAEl = document.getElementById("Answer 1");
+// var answerBEl = document.getElementById("Answer 2");
+// var answerCEl = document.getElementById("Answer 3");
+// var answerDEl = document.getElementById("Answer 4");
+// var answerEEl = document.getElementById("Answer 5");
