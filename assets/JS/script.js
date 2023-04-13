@@ -87,12 +87,14 @@ var questions = [
 ]
 
 // SET EVENT LISTENER FOR QUIZ ADVANCEMENT BUTTONS
-startButton.addEventListener("click", startQuiz);
-
+startBtn.addEventListener("click", startQuiz);
+nextBtn.addEventListener("click", (getNewQuestion) => {
+    availQuestions++
+    getNewQuestion()
+});
 
 // START QUIZ
 function startQuiz() {
-    questionCounter = 0;
     availQuestions = [...questions];
     getNewQuestion();
     // introPageEl.setAttribute("hide");
