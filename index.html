@@ -13,11 +13,11 @@
     <header>
         <div class="time-score-container" id="home">
             <a class="highscore-label" style="text-align:left;">View High Scores</a>
-            <a class="timer" style="text-align:right;">Time:</a>
+            <a class="timer" style="text-align:right;">Time: <span id="timer"></span></a>
         </div>
     </header>
 
-    <section class="start-container"></section>
+    <section class="start-container">
     <div>
         <h1>QUIZ &nbsp; TIME!</h1>
         <img src="./assets/images/baby-elephant.png" class="img-container">
@@ -33,107 +33,23 @@
     </section>
 
     <!-- setting a new container for each question -->
-    <section class="questions-container" id="first">
+    <section class="questions-container hide">
         <img src="./assets/images/elephant-trunk.png" class="questions-img">
 
-        <h3 class="question">Question Placeholder</h3>
-        <ul class="answers-container">
-            <li class="answers-btn" id="choice" data-number="1">Choice1</li>
-            <li class="answers-btn" id="choice" data-number="2">Choice2</li>
-            <li class="answers-btn" id="choice" data-number="3">Choice3</li>
-            <li class="answers-btn" id="choice" data-number="4">Choice4</li>
-            <li class="answers-btn" id="choice" data-number="5">Choice5</li>
+        <p class="question" id="test">Question Placeholder</p>
+        <ul class="answers-container" id="choices">
         </ul>
+        
         <!-- <div id="btn-container-secondary">
         <button class="btn-secondary">Submit</button>
         <button class="btn-secondary">Skip</button> -->
         <div class="check-container">
-            <h4>You are correct! | Oooooh WRONG!</h4>
+            <h4 class="right-wrong">You are correct! | Oooooh WRONG!</h4>
             <button class="next-btn">Next Question</button>
         </div>
     </section>
 
-    <section class="questions-container" id="second">
-        <img src="./assets/images/elephant-trunk.png" class="questions-img">
-
-        <h3 class="question">Question Placeholder</h3>
-        <ul class="answers-container">
-            <li class="answers-btn" id="choice" data-number="1">Choice1</li>
-            <li class="answers-btn" id="choice" data-number="2">Choice2</li>
-            <li class="answers-btn" id="choice" data-number="3">Choice3</li>
-            <li class="answers-btn" id="choice" data-number="4">Choice4</li>
-            <li class="answers-btn" id="choice" data-number="5">Choice5</li>
-        </ul>
-        <!-- <div id="btn-container-secondary">
-        <button class="btn-secondary">Submit</button>
-        <button class="btn-secondary">Skip</button> -->
-        <div class="check-container">
-            <h4>You are correct! | Oooooh WRONG!</h4>
-            <button class="next-btn">Next Question</button>
-        </div>
-    </section>
-
-    <section class="questions-container" id="third">
-        <img src="./assets/images/elephant-trunk.png" class="questions-img">
-
-        <h3 class="question">Question Placeholder</h3>
-        <ul class="answers-container">
-            <li class="answers-btn" id="choice" data-number="1">Choice1</li>
-            <li class="answers-btn" id="choice" data-number="2">Choice2</li>
-            <li class="answers-btn" id="choice" data-number="3">Choice3</li>
-            <li class="answers-btn" id="choice" data-number="4">Choice4</li>
-            <li class="answers-btn" id="choice" data-number="5">Choice5</li>
-        </ul>
-        <!-- <div id="btn-container-secondary">
-        <button class="btn-secondary">Submit</button>
-        <button class="btn-secondary">Skip</button> -->
-        <div class="check-container">
-            <h4>You are correct! | Oooooh WRONG!</h4>
-            <button class="next-btn">Next Question</button>
-        </div>
-    </section>
-
-    <section class="questions-container" id="fourth">
-        <img src="./assets/images/elephant-trunk.png" class="questions-img">
-
-        <h3 class="question">Question Placeholder</h3>
-        <ul class="answers-container">
-            <li class="answers-btn" id="choice" data-number="1">Choice1</li>
-            <li class="answers-btn" id="choice" data-number="2">Choice2</li>
-            <li class="answers-btn" id="choice" data-number="3">Choice3</li>
-            <li class="answers-btn" id="choice" data-number="4">Choice4</li>
-            <li class="answers-btn" id="choice" data-number="5">Choice5</li>
-        </ul>
-        <!-- <div id="btn-container-secondary">
-        <button class="btn-secondary">Submit</button>
-        <button class="btn-secondary">Skip</button> -->
-        <div class="check-container">
-            <h4>You are correct! | Oooooh WRONG!</h4>
-            <button class="next-btn">Next Question</button>
-        </div>
-    </section>
-
-    <section class="questions-container" id="fifth">
-        <img src="./assets/images/elephant-trunk.png" class="questions-img">
-
-        <h3 class="question">Question Placeholder</h3>
-        <ul class="answers-container">
-            <li class="answers-btn" id="choice" data-number="1">Choice1</li>
-            <li class="answers-btn" id="choice" data-number="2">Choice2</li>
-            <li class="answers-btn" id="choice" data-number="3">Choice3</li>
-            <li class="answers-btn" id="choice" data-number="4">Choice4</li>
-            <li class="answers-btn" id="choice" data-number="5">Choice5</li>
-        </ul>
-        <!-- <div id="btn-container-secondary">
-                <button class="btn-secondary">Submit</button>
-                <button class="btn-secondary">Skip</button> -->
-        <div class="check-container">
-            <h4>You are correct! | Oooooh WRONG!</h4>
-            <button class="next-btn">Next Question</button>
-        </div>
-    </section>
-
-    <section class="score-container">
+    <section class="score-container hide">
         <h2>Your final score:</h2>
         <p id="score-display">0</p>
         <form>
@@ -143,7 +59,7 @@
         </form>
     </section>
 
-    <section class="highscores-container">
+    <section class="highscores-container hide">
         <h5>HIGH SCORES</h5>
         <div class="scoreboard"></div>
         <div class="button-box">
