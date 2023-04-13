@@ -3,7 +3,7 @@ var timeEl = document.querySelector(".timer");
 
 // QUESTION & ANSWER CONTAINER VARIABLES
 // var questionE1 = document.querySelector(".question");
-// var choicesEl = Array.from(document.querySelectorAll("#choices"));
+// var choiceEl = Array.from(document.querySelectorAll("#choice"));
 var currentQuestion = {};
 var playerPoints = 0;
 var correctAnswer = true;
@@ -86,6 +86,10 @@ var questions = [
     },
 ]
 
+// SET EVENT LISTENER FOR QUIZ ADVANCEMENT BUTTONS
+startButton.addEventListener("click", startQuiz);
+
+
 // START QUIZ
 function startQuiz() {
     questionCounter = 0;
@@ -95,9 +99,8 @@ function startQuiz() {
 };
 
 function getNewQuestion() {
-    if(availQuestions.length === 0 || timeEl === 0) {
+    if (availQuestions.length === 0 || timeEl === 0) {
         localStorage.setItem('playerInitials', score);
-
         return window.location.assign('/end.html');
     };
 
@@ -105,47 +108,43 @@ function getNewQuestion() {
     currentQuestion = availQuestions[questionsIndex];
     question.innerText = currentQuestion.question;
 
-    // var choicesEl = document.getElementById("choices");
-    function choices.forEach() {
+    // USE ARRAY.FOREACH METHOD TO LOOP THROUGH THE ARRAY - CALLBACK FUNCTION
+    function forEach(choice) {
         var number = choice.dataset['number'];
         choice.innerText = currentQuestion['choice' + number];
     }
 
     availQuestions.splice(questionsIndex, 1);
-
     correctAnswer = true;
 };
 
-// TRIGGER STARTING EVENT LISTENERS FOR TIMER AND QUESTIONS
-// addEventListerner(event, function)
-startBtn.addEventListener("click", startQuiz);
-nextBtn.addEventListener("click", () => {
+function forEach(choice) {
+    choice.addEventListener('click', ()
+    )
+};
 
-});
 
 // SET TIMER TO START ON CLICK AT START OF QUIZ
 function startTimer() {
     var secondsLeft = 90;
-
-    setInterval(function () {
+    setInterval(timeTick, 1000);
+    function timeTick() {
         secondsLeft--;
         timeEl.textContent = secondsLeft + "s left";
 
-        if (secondsLeft === 0) {
+        if (secondsLeft <= 0) {
             // Stops execution of action at set interval.
-            clearInterval(timerInterval);
-            // Calls function to create and send 'game over' message
-            timeEl.displayMessage = "Time's Up!";
-            introPageEl();
-        }
-    }, 1000);
+            clearInterval();
+            endQuiz();
+        };
+    }, 
 }
 
 // MOVE THROUGH QUESTIONS CONTAINERS LISTING QUESTION, CHOICES, CHECKING USER INPUT AGAINST ANSWER
 
 for (var i = 0; i < 6; i++) {
 
-    function startQuestions(){
+    function startQuestions() {
 
     };
 }
