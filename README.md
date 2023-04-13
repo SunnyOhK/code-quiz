@@ -1,7 +1,8 @@
 # code-quiz
 
 
-# Image Credits
+# Credits
+- Video Tutorial Credits: https://youtu.be/f4fB9Xg2JEY 
 
 - baby-elephant2: https://africafreak.com/wp-content/uploads/2021/04/baby-elephant.webp
 
