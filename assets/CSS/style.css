@@ -207,9 +207,9 @@ h4 {
     line-height: 0px;
 }
 
-.score-display {
+#score-display {
     font-size: 80px;
-    line-height: 0px;
+    line-height: 1px;
 }
 
 input {
