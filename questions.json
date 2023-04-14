@@ -1,0 +1,33 @@
+[
+    {
+        "question": "Which of the following is a function of the elephant's trunk?",
+        "choices": [
+            "To suck up water for drinking and cooling", "To use as a snorkel", "To grab items that are too large to inhale", "To communicate (trumpet warnings and greet one another)", "All are true"],
+        "answer": 4
+    },
+    {
+        "question": "On which continent is the elephant not native/ found in the wild?",
+        "choices": ["South America", "Africa", "Asia", "Elephants are native to all 3 of these continents", "Elephants are not native to any of these continents"],
+        "answer": 0
+    },
+    {
+        "question": "Which of the following is the largest living elephant species?",
+        "choices": ["Asian", "African Savanna", "African Forest", "Woolly Mammoth", "Mr. Snuffleupagus"],
+        "answer": 1
+    },
+    {
+        "question": "How much does a baby elephant normally weigh at birth?",
+        "choices": ["100 - 150 lbs", "200 - 250 lbs", "300 - 350 lbs", "400 - 450 lbs", "up to 800 lbs depending on the species"],
+        "answer": 1
+    },
+    {
+        "question": "Which of the following poses the greatest threat to elephants' survival?",
+        "choices": ["Large feline predators (ex. lions)", "Declining birth rates", "Humans (poaching and habitat destruction)", "Mudslides", "Elephant populations are not declining"],
+        "answer": 2
+    },
+    {
+        "question": "Which of the following is a common (true) claim about elephants?",
+        "choices": ["Elephants are afraid of mice", "Elephants have the sharpest eyesight in the animal kingdom", "Elephants love performing in the circus", "An elephant a day keeps the doctor away", "An elephant never forgets"],
+        "answer": 5
+    }
+]
