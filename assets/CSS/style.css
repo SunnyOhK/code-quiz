@@ -150,7 +150,7 @@ footer {
     text-align: left;
 }
 
-.answers-btn {
+.choice-btn {
     font-size: 20px;
     width: 38rem;
     padding: 10px 30px 10px 20px;
@@ -162,7 +162,7 @@ footer {
     list-style-type: none;
 }
 
-.answers-btn:hover {
+.choice-btn:hover {
     background-color: var(--yellow);
     color: var(--grey);
 }
@@ -176,9 +176,10 @@ footer {
     border-top: 2px solid #4b4952c3;
 }
 
-h4 {
+#right-wrong {
     color: #4b4952c3;
     font-size: 28px;
+    margin-left: 188px;
 }
 
 .next-btn {
@@ -186,6 +187,8 @@ h4 {
     width: 15rem;
     padding: 10px 16px 10px 16px;
     margin-bottom: 9px;
+    margin-top: 18px;
+    margin-left: 188px;
     text-align: center;
     border-radius: 12px;
     background-color: var(--mauve);
