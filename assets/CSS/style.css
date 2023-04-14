@@ -34,6 +34,12 @@ h1 {
     text-shadow: 0px 3px 3px rgb(65, 64, 64);
 }
 
+.shamrock {
+    color: rgb(42, 188, 42);
+    font-size: 80px;
+    line-height: 0.5;
+}
+
 .time-score-container {
     display: flex;
     justify-content: center;
@@ -47,7 +53,7 @@ h1 {
     padding-top: 5px;
 }
 
-.highscore-label {
+.progress-label {
     font-size: 35px;
     padding-left: 150px;
     padding-right: 500px;
@@ -221,10 +227,10 @@ input {
 }
 
 .submit-btn {
-    font-size: 24px;
-    width: 15rem;
-    margin-left: 2rem;
-    padding: 10px 16px 10px 16px;
+    font-size: 20px;
+    width: 9rem;
+    margin-left: 1rem;
+    padding: 6px 12px 6px 12px;
     text-align: center;
     background-color: var(--yellow);
     border-radius: 10px;
