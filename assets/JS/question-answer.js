@@ -5,9 +5,15 @@ var answersArray = [];
 
 // DEFINE WHERE VARIABLES WILL PRINT TO WEBPAGE
 var questionText = document.querySelector('#question-text');
+var choicesText = document.querySelector('#choice-text');
+var choicesText2 = document.querySelector('#choice-text2');
+var choicesText3 = document.querySelector('#choice-text3');
+var choicesText4 = document.querySelector('#choice-text4');
+var choicesText5 = document.querySelector('#choice-text5');
 var progressLabel = document.querySelector('#counter');
 var timerEl = document.querySelector('#timer');
 var answerCheckText = document.querySelector('#right-wrong');
+var choiceBtn = document.querySelector('.choice-btn');
 
 // SET STARTING POINT FOR QUESTIONS COUNTER AND TIMER
 let timeStart;
@@ -16,10 +22,10 @@ let questionsCounter = 0;
 let currentQuestion = 0;
 let correctAnswer = false;
 var availableQuestions = 6;
-let questions = [];
 var quizScore;
 
 // TESTING WITH CONSOLE LOG TO MAKE SURE JSON FILE IS CONNECTED
+let questions = [];
 fetch('../questions.json')
     .then(res => res.json())
     .then(data => console.log(data))
@@ -35,7 +41,7 @@ fetch('../questions.json')
 
 
 
-function startQuiz () {
+function startQuiz() {
     timerCountdown = 90;
     questionsCounter = 0;
     availableQuestions = [...questions];
@@ -57,158 +63,37 @@ function startTimer() {
 };
 
 function getNewQuestion() {
-    // if (availableQuestions.length === 0 || timerCountdown === 0) {
-    //     localStorage.setItem("quizScore", score);
-    //     // go to end page
-    //     return window.location.assign("/code-quiz/gameover.html");
-    // } else {
-    //     getNewQuestion();
-    // }
+    for (let i = 0; i < availableQuestions.length; i++) {
 
-    questionText.forEach((question) => {
-        question.innerText = currentQuestion['question' + _______ ]
-    })
+        // QUESTION 1
+        questionText.textContent = availableQuestions[i].question;
+        choicesText.textContent = availableQuestions[i].choices[0];
+        choicesText2.textContent = availableQuestions[i].choices[1];
+        choicesText3.textContent = availableQuestions[i].choices[2];
+        choicesText4.textContent = availableQuestions[i].choices[3];
+        choicesText5.textContent = availableQuestions[i].choices[4];
+    }
 
-    choices.forEach((choice) => {
-        var number = choice.dataset["number"];
-        choice.innerText = currentQuestion["choice" + number];
-    });
+    if (secondsLeft === 0) {
+        localStorage.setItem("quizScore", score);
+        return window.location.assign("/code-quiz/gameover.html");
+    }
 
-    availableQuestions.splice(questionIndex, 1);
-
-    correctAnswer = true;
+    console.log(availableQuestions);
+    checkAnswer();
+    getNewQuestion();
 };
 
-// function forEach(choice) {
-//     choice.addEventListener("click", (e) => {
-//         // console.log(e.target); <- checked that it was bringing up the answer clicked on
-//         if (!acceptingAnswers) return;
+function checkAnswer() {
+    choiceBtn.addEventListener('click', (e) => {
 
-//         acceptingAnswers = false;
-//         const selectChoice = e.target;
-//         const selectAnswer = selectChoice.dataset["number"];
-
-//         // had to change to let so that it would allow it to change between right and wrong
-//         let classToApply = "incorrect";
-//         if (selectAnswer == currentQuestion.answer) {
-//             classToApply = "correct";
-//         }
-//         // console.log(classToApply); <- used to catch the syntax error of above & to test if it was logging 'correct'/'true' || 'incorrect'/'false'
-//         if (classToApply == "correct") {
-//             incrementScore(CORRECT_BONUS);
-//         }
-//         //  penalizes player if they get the question wrong by 5 seconds
-//         if (classToApply == "incorrect") {
-//             timerCount -= 5;
-//         }
-
-//         selectChoice.parentElement.classList.add(classToApply);
-//         // .add is how to add classes in javascript
-//         setTimeout(() => {
-//             selectChoice.parentElement.classList.remove(classToApply);
-//             // .remove to remove class in javascript
-//             getNewQuestion();
-//         }, 1000);
-
-
-
-
-// timer function -> clear interval to stop timer from counting into the negatives
-
-    // questionsCounter++;
-    // progressText.innerText = "Question " + questionsCounter + "/" + MAX_QUESTIONS;
-    // // update progress
-    // progressBarFull.style.width = `${(questionsCounter / MAX_QUESTIONS) * 100}%`;
-
-// function endQuiz() {
-
-// }
-
-// function startTime() {
-//     timer++;
-//     countdown.innerHTML = convertSeconds(timerCount - timer);
-
-//     if (timer == timerCount) {
-//         clearInterval(interval);
-
-//         pleaseWork();
-//     }
-// }
-// // redirects player if timer ends before the questions do
-// function pleaseWork() {
-//     return window.location.assign("/letsgetquizzical/end.html");
-// }
-// // absolute path needed for redirections
-
-// getNewQuestion = () => {
-//     if (availableQuestions.length === 0 || timerCount === 0) {
-//         localStorage.setItem("mostRecentScore", score);
-//         // go to end page
-//         return window.location.assign("/letsgetquizzical/end.html");
-//     }
-//     questionsCounter++;
-//     progressText.innerText = "Question " + questionsCounter + "/" + MAX_QUESTIONS;
-//     // update progress
-//     progressBarFull.style.width = `${(questionsCounter / MAX_QUESTIONS) * 100}%`;
-
-//     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
-//     currentQuestion = availableQuestions[questionIndex];
-//     question.innerText = currentQuestion.question;
-
-//     choices.forEach((choice) => {
-//         const number = choice.dataset["number"];
-//         choice.innerText = currentQuestion["choice" + number];
-//     });
-
-//     availableQuestions.splice(questionIndex, 1);
-
-//     acceptingAnswers = true;
-// };
-
-// choices.forEach((choice) => {
-//     choice.addEventListener("click", (e) => {
-//         // console.log(e.target); <- checked that it was bringing up the answer clicked on
-//         if (!acceptingAnswers) return;
-
-//         acceptingAnswers = false;
-//         const selectChoice = e.target;
-//         const selectAnswer = selectChoice.dataset["number"];
-
-//         // had to change to let so that it would allow it to change between right and wrong
-//         let classToApply = "incorrect";
-//         if (selectAnswer == currentQuestion.answer) {
-//             classToApply = "correct";
-//         }
-//         // console.log(classToApply); <- used to catch the syntax error of above & to test if it was logging 'correct'/'true' || 'incorrect'/'false'
-//         if (classToApply == "correct") {
-//             incrementScore(CORRECT_BONUS);
-//         }
-//         //  penalizes player if they get the question wrong by 5 seconds
-//         if (classToApply == "incorrect") {
-//             timerCount -= 5;
-//         }
-
-//         selectChoice.parentElement.classList.add(classToApply);
-//         // .add is how to add classes in javascript
-//         setTimeout(() => {
-//             selectChoice.parentElement.classList.remove(classToApply);
-//             // .remove to remove class in javascript
-//             getNewQuestion();
-//         }, 1000);
-
-//         console.log(selectAnswer == currentQuestion.answer);
-//         // checks if the selected answer was the 'right' one
-//     });
-// });
-
-// incrementScore = (num) => {
-//     score += num;
-//     scoreText.innerText = score;
-// };
-
-// // helps w visual of timer
-// function convertSeconds(s) {
-//     var min = Math.floor(s / 60);
-//     var sec = s % 60;
-//     return min + ":" + sec;
-// }
+        if (availableQuestions[i].choices === availableQuestions[i].answer) {
+            answerCheckText.textContent = "You are correct!";
+            getNewQuestion();
+        } else {
+            answerCheckText.textContent = "Oooooh... WRONG!";
+            secondsLeft -= 10;
+            getNewQuestion();
+        }
+    });
+};
