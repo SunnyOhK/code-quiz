@@ -209,7 +209,7 @@ footer {
     border: 3px solid var(--mauve);
 }
 
-.score-container {
+.highscores-container {
     text-align: center;
     font-size: 25px;
     padding-top: 30px;
@@ -277,6 +277,7 @@ h5 {
     border-radius: 12px;
     background-color: var(--mauve);
     color: var(--white);
+    text-decoration: none;
 }
 
 .hs-btn:hover {
@@ -285,6 +286,7 @@ h5 {
     transition: 0.3s;
     font-weight: bolder;
 }
+
 
 /* CODE I MIGHT NEED LATER */
 
