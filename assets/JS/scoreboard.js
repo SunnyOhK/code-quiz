@@ -1,3 +1,6 @@
+var homeBtn = document.querySelector('#start-qa');
+var hsBtn = document.querySelector('#view-hs');
+
 const highScoreList = document.getElementById('highScoreList');
 const highScore = JSON.parse(localStorage.getItem('highScore')) || [];
 // console.log(highScore);
