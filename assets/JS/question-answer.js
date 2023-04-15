@@ -39,8 +39,6 @@ fetch('../questions.json')
         startQuiz();
     })
 
-
-
 function startQuiz() {
     timerCountdown = 90;
     questionsCounter = 0;
@@ -85,7 +83,6 @@ function getNewQuestion() {
 };
 
 function checkAnswer() {
-    choiceBtn.addEventListener('click', (e) => {
 
         if (availableQuestions[i].choices === availableQuestions[i].answer) {
             answerCheckText.textContent = "You are correct!";
@@ -95,5 +92,6 @@ function checkAnswer() {
             secondsLeft -= 10;
             getNewQuestion();
         }
-    });
-};
+    };
+
+choiceBtn.addEventListener('click', (checkAnswer));
