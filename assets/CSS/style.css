@@ -209,11 +209,24 @@ footer {
     border: 3px solid var(--mauve);
 }
 
-.highscores-container {
-    text-align: center;
+/* .save-score-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10%;
+    margin-left: 30%;
+    padding-top: 2rem;
     font-size: 25px;
     padding-top: 30px;
-    line-height: 0px;
+} */
+
+form {
+    margin-right: 10%;
+    margin-left: 30%;
+    padding-top: 2rem;
+    font-size: 25px;
+    padding-top: 30px;
+    line-height: 2.1;
+    justify-content: center;
 }
 
 #score-display {
@@ -253,6 +266,10 @@ h5 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    font-size: 25px;
+    padding-top: 30px;
+    line-height: 0px;
 }
 
 .scoreboard {
@@ -286,6 +303,12 @@ h5 {
     transition: 0.3s;
     font-weight: bolder;
 }
+
+form {
+    margin-right: 10%;
+    margin-left: 30%;
+}
+
 
 
 /* CODE I MIGHT NEED LATER */

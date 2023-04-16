@@ -10,16 +10,17 @@
 </head>
 
 <body>
-        <section class="score-container">
+        <section class="save-score-container">
             <h2>Your final score:</h2>
             <p id="score-display">0</p>
             <form>
                 <label>Enter your initials to save your score:&nbsp&nbsp</label>
+                <br>
                 <input type="text" id="initials-field" maxlength="3" placeholder="Enter your initials" />
-                <button type="submit" class="submit-btn">Submit</button>
+                <button type="submit" class="submit-btn" onclick="saveScore(event)">Submit</button>
             </form>
-            <button href="/index.html" class="hs-btn" id="play-again">Play Again!</button>
-            <button href="/index.html" class="hs-btn" id="visit-scoreboard">Scoreboard</button>
+            <a href="/index.html" class="hs-btn" id="play-again">Play Again!</a>
+            <a href="/scoreboard.html" class="hs-btn" id="visit-scoreboard">Scoreboard</a>
         </section>
     <script src="./assets/JS/gameover.js"></script>
 </body>

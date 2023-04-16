@@ -1,27 +1,27 @@
-const initials = document.getElementById("initials");
-const saveScoreBtn = document.getElementById("saveScoreBtn");
-const finalScore = document.getElementById("finalScore");
-const mostRecentScore = localStorage.getItem("mostRecentScore");
-finalScore.innerText = mostRecentScore;
+var initials = document.querySelector(".initials-field")
+var submitBtn = document.querySelector(".submit-btn");
+var myScore = document.querySelector(".score-display");
+var lastScore = localStorage.getItem("pastScores");
 
-const highScore = JSON.parse(localStorage.getItem("highScore")) || [];
-// console.log(JSON.parse(localStorage.getItem('highScores')));
-// logs the array that is taken from local storage
+// PULL PLAYER SCORE FROM LOCAL STORAGE TO PRINT TO TABLE
+var highScore = JSON.parse(localStorage.getItem("highScore")) || [];
+
 console.log(highScore);
-const MAX_HIGH_SCORES = 5;
 
-finalScore.innerText = mostRecentScore
+var MAX_HIGH_SCORES = 5;
+
+myScore.innerText = lastScore
 
 initials.addEventListener("keyup", () => {
     // console.log(initials.value); logs what is typed in the form
-    saveScoreBtn.disabled = !initials.value;
+    submitBtn = !initials.value;
 });
 
-saveHighScore = (e) => {
+function (saveScore) = (e) => {
     e.preventDefault();
     // console.log('clicked save') -> testing save button event
 
-    const score = {
+    var score = {
         score: mostRecentScore,
         name: initials.value,
     };
@@ -33,7 +33,7 @@ saveHighScore = (e) => {
     highScore.splice(5);
 
     localStorage.setItem('highScore', JSON.stringify(highScore));
-    window.location.assign('/letsgetquizzical/index.html');
+    window.location.assign('/code-quiz/scoreboard.html');
 };
 // has GET item instead of SET ite
 
