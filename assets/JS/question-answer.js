@@ -20,11 +20,14 @@ let timeStart;
 var secondsLeft = 90;
 let questionsCounter = 0;
 let currentQuestion = 0;
-let correctAnswer = false;
-var availableQuestions = 6;
+var correctAnswer = false;
+var questionsIndex = 0;
+var availableQuestions = [];
 var quizScore;
 
 // TESTING WITH CONSOLE LOG TO MAKE SURE JSON FILE IS CONNECTED
+
+// PULL QUESTIONS FROM ARRAY IN JSON
 let questions = [];
 fetch('../questions.json')
     .then(res => res.json())
@@ -54,14 +57,13 @@ function startTimer() {
 
         if (timerCountdown <= 0) {
             // Stops execution of action at set interval.
-
             endQuiz();
         };
     }, 1000)
 };
 
 function getNewQuestion() {
-    for (let i = 0; i < availableQuestions.length; i++) {
+    for (i = 0; i < availableQuestions.length - 1; i++) {
 
         // QUESTION 1
         questionText.textContent = availableQuestions[i].question;
@@ -70,28 +72,57 @@ function getNewQuestion() {
         choicesText3.textContent = availableQuestions[i].choices[2];
         choicesText4.textContent = availableQuestions[i].choices[3];
         choicesText5.textContent = availableQuestions[i].choices[4];
+        correctAnswer = availableQuestions[i].answer;
     }
 
-    if (secondsLeft === 0) {
+    if (timerCountdown === 0) {
         localStorage.setItem("quizScore", score);
         return window.location.assign("/code-quiz/gameover.html");
     }
 
+    questionsCounter++;
+    progressLabel.textContent = questionsCounter + "/6";
+    // update progress
+
+    var questionIndex = Math.floor(Math.random() * availableQuestions.length);
+    currentQuestion = availableQuestions[questionIndex];
+    question.innerText = currentQuestion.question;
+
+    choices.forEach((choice) => {
+        var number = choice.dataset["number"];
+        choice.innerText = currentQuestion["choice" + number];
+    });
+
+    correctAnswer = true;
     console.log(availableQuestions);
     checkAnswer();
-    getNewQuestion();
 };
 
-function checkAnswer() {
+choices.forEach((choice) => {
+    choiceBtn.addEventListener("click", (e) => {
+        if (!correctAnswer) return;
 
-        if (availableQuestions[i].choices === availableQuestions[i].answer) {
-            answerCheckText.textContent = "You are correct!";
-            getNewQuestion();
-        } else {
-            answerCheckText.textContent = "Oooooh... WRONG!";
-            secondsLeft -= 10;
-            getNewQuestion();
+        correctAnswer = false;
+        var selectChoice = e.target;
+        var selectAnswer = selectChoice.dataset["number"];
+
+// ADDING PARAMETERS TO CLASS SO QUIZ CAN SEE CORRECT V. INCORRECT
+        let classToApply = "wrong";
+        if (selectAnswer == currentQuestion.answer) {
+            classToApply = "correct";
         }
-    };
 
-choiceBtn.addEventListener('click', (checkAnswer));
+// DEDUCT TIME/ SCORE FOR WRONG ANSWERS
+        if (classToApply == "wrong") {
+            timerCountdown -= 10;
+        }
+
+// ASSIGNING ABOVE CLASSES TO ELEMENTS FOR ASSESSMENT
+        selectChoice.parentElement.classList.add(classToApply);
+
+        setTimeout(() => {
+            selectChoice.parentElement.classList.remove(classToApply);
+            getNewQuestion();
+        }, 1000);
+    });
+});
