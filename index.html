@@ -11,21 +11,59 @@
 
 <body>
 
-    <section class="start-container">
+    <!-- INTRO PAGE TO GIVE INSTRUCTIONS AND START -->
+    <header>
+        <div class="hs-time">
+            <a class="scoreboard-label" style="text-align:left;" href="/scoreboard.html" target="_self">Scoreboard</a>
+            <p class="timer" style="text-align:right;">Time: &nbsp;90<span id="timer"></span></p>
+        </div>
+    </header>
+
+    <!-- INTRO PAGE TO GIVE INSTRUCTIONS AND START -->
+    <section class="home">
         <div>
             <h1>QUIZ &nbsp; TIME!</h1>
             <img src="./assets/images/baby-elephant.png" class="img-container">
         </div>
         <div class="opener">
             <h2>Instructions</h2>
-            <p>You have 90 seconds to answer 6 questions about elephants! <br> <b>Remember...</b> each wrong answer will take 10 seconds off the timer.</p>
+            <p>You have 90 seconds to answer 6 questions about elephants!</p>
+            <p><b>Remember...</b> each wrong answer will take 10 seconds off the timer.</p>
             <h2>Good luck!</h2>
             <span class="shamrock"><b>&#9752;</b></span>
         </div>
         <div id="btn-container">
-            <a href="/question-answer.html"class="btn-start" id="start-qa">Play!</a>
-            <a href="/scoreboard.html" class="btn-start" id="view-hs" >High Scores</a>
+            <button class="btn-start">Play!</button>
         </div>
+    </section>
+
+    <!-- QUESTION & ANSWER PAGE-->
+    <section class="qna-page">
+        <div class="questions-container">
+
+            <img src="./assets/images/elephant-trunk.png" class="questions-img">
+
+            <h3 class="question">Question</h3>
+
+            <!-- Instead of targeting by text, I can use data-number to differentiate between options -->
+            <div class="choice-container">
+                <button class="choice-btn" data-number="1">choice</button>
+                <button class="choice-btn" data-number="2">choice</button>
+                <button class="choice-btn" data-number="3">choice</button>
+                <button class="choice-btn" data-number="4">choice</button>
+                <button class="choice-btn" data-number="5">choice</button>
+            </div>
+        </div>
+
+        <!-- Container to hold hidden message after user selects their answer -->
+        <footer class="check-container" id="right-wrong">
+            <div id="correct">
+                <p>You are correct!</p>
+            </div>
+            <div id="wrong">
+                <p>Oooh...wrong!</p>
+            </div>
+        </footer>
     </section>
 
     <script src="./assets/js/script.js"></script>
