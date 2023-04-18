@@ -20,7 +20,7 @@
     </header>
 
     <!-- INTRO PAGE TO GIVE INSTRUCTIONS AND START -->
-    <section class="home">
+    <section class="home show">
         <div>
             <h1>QUIZ &nbsp; TIME!</h1>
             <img src="./assets/images/baby-elephant.png" class="img-container">
@@ -38,7 +38,7 @@
     </section>
 
     <!-- QUESTION & ANSWER PAGE-->
-    <section class="qna-page">
+    <section class="qna-page hide">
         <div class="questions-container">
 
             <img src="./assets/images/elephant-trunk.png" class="questions-img">
@@ -57,10 +57,10 @@
 
         <!-- Container to hold hidden message after user selects their answer -->
         <footer class="check-container" id="right-wrong">
-            <div id="correct">
+            <div class="hide" id="correct">
                 <p>You are correct!</p>
             </div>
-            <div id="wrong">
+            <div class="hide" id="wrong">
                 <p>Oooh...wrong!</p>
             </div>
         </footer>
