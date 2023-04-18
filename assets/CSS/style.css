@@ -21,16 +21,14 @@ body {
 header {
     background-size: cover;
     border-bottom: 2px solid var(--black);
-    padding-top: 10px;
-    padding-bottom: 10px;
+    height: 4.4em;
+    padding-bottom: 1.2em;
 }
 
 h1 {
     font-size: 45px;
     text-align: center;
     color: var(--black);
-    padding-top: 3px;
-    padding-bottom: 10px;
     text-shadow: 0px 3px 3px rgb(65, 64, 64);
 }
 
@@ -44,20 +42,19 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: -10px;
 }
 
 .timer {
     font-size: 35px;
     padding-right: 12em;
-    padding-left: 10em;
-    padding-top: 5px;
+    padding-left: 7em;
 }
 
 .scoreboard-label {
     font-size: 35px;
     padding-left: 12em;
     padding-right: 10em;
-    padding-top: 5px;
     text-decoration: none;
     color: var(--black);
 }
@@ -117,9 +114,11 @@ footer {
 }
 
 .btn-start:hover {
-    background-color: var(--purple);
-    color: var(--yellow);
-    transition: 0.4s;
+    color: var(--grey);
+    text-shadow: 2px 2px 3px var(--blue);
+    background-color: var(--white);
+    box-shadow: 0 0 10px 0 var(--mauve) inset, 0 0 20px 2px var(--mauve);
+    border: 3px solid var(--mauve);
 }
 
 .btn[disabled]:hover {
@@ -318,6 +317,13 @@ form {
     margin-left: 30%;
 }
 
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
 
 
 /* CODE I MIGHT NEED LATER */

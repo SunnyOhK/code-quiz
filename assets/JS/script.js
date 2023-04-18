@@ -1,133 +1,120 @@
-// DEFINE GLOBAL VARIABLES FOR HOME PAGE
+// DEFINE GLOBAL VARIABLES FOR HOME PAGE AND HIDE/SHOW
 var startBtn = document.querySelector('.btn-start');
 var homePage = document.querySelector('.home');
 var quizPage = document.querySelector('.qna-page');
+var hideEl = document.querySelector('.show');
+var showEl = document.querySelector('.hide');
 
 
 // DEFINE Q&A PAGE VARIABLES
-var timerEl = document.querySelector('#timer');
+var timerEl = document.querySelector('.timer');
 var questionEl = document.querySelector('.question');
 var choiceEl = document.querySelector('.choice-btn');
 var textCorrect = document.querySelector('#correct');
 var textWrong = document.querySelector('#wrong');
-// Q&A stored in .json file []
+
+// REMOVED Q&A FROM .JSON AND PUT INTO JS VARIABLE []
 var currentQuestion = 0;
 var questionsIndex = 0;
 var score = 0;
 
-// SET STARTING POINT FOR QUESTIONS COUNTER AND TIMER
-let timeStart;
-var secondsLeft = 90;
-let questionsCounter = 0;
+// SET STARTING POINT FOR TIMER
+var time;
+var secondsLeft;
+var questionsCounter = 0;
 
-var correctAnswer = false;
-var questionsIndex = 0;
+// MAKE SURE QUESTIONS START AT BEGINNING AND GO THROUGH DESIGNATED ARRAY ONCE
+var currentQuestion = 0;
 var availableQuestions = [];
 
-// TESTING WITH CONSOLE LOG TO MAKE SURE JSON FILE IS CONNECTED
+// DEFINE QUESTIONS AND CHOICES ARRAY
+var questionsArray = [
+    {
+        question: "Which of the following is a function of the elephant's trunk?",
+        c1: "To suck up water for drinking and cooling",
+        c2: "To use as a snorkel",
+        c3: "To grab items that are too large to inhale",
+        c4: "To communicate (trumpet warnings and greet one another)",
+        c5: "All are true",
+        answer: 5
+    },
+    {
+        question: "On which continent is the elephant not native/ found in the wild?",
+        c1: "South America",
+        c2: "Africa",
+        c3: "Asia",
+        c4: "Elephants are native to all 3 of these continents",
+        c5: "Elephants are not native to any of these continents",
+        answer: 1
+    },
+    {
+        question: "Which of the following is the largest living elephant species?",
+        c1: "Asian",
+        c2: "African Savanna",
+        c3: "African Forest",
+        c4: "Woolly Mammoth",
+        c5: "Mr. Snuffleupagus",
+        answer: 2
+    },
+    {
+        question: "How much does a baby elephant normally weigh at birth?",
+        c1: "100 - 150 lbs",
+        c2: "200 - 250 lbs",
+        c3: "300 - 350 lbs",
+        c4: "400 - 450 lbs",
+        c5: "up to 800 lbs depending on the species",
+        answer: 2
+    },
+    {
+        question: "Which of the following poses the greatest threat to elephants' survival?",
+        c1: "Large feline predators (ex. lions)",
+        c2: "Declining birth rates",
+        c3: "Humans (poaching and habitat destruction)",
+        c4: "Mudslides",
+        c5: "Elephant populations are not declining",
+        answer: 3
+    },
+    {
+        question: "Which of the following is a common (true) claim about elephants?",
+        c1: "Elephants are afraid of mice",
+        c2: "Elephants have the sharpest eyesight in the animal kingdom",
+        c3: "Elephants love performing in the circus",
+        c4: "An elephant a day keeps the doctor away",
+        c5: "An elephant never forgets",
+        answer: 5
+    }
+]
 
-// PULL QUESTIONS FROM ARRAY IN JSON
-let questions = [];
-fetch('../questions.json')
-    .then(res => res.json())
-    .then(data => console.log(data))
-
-fetch('../questions.json')
-    .then((res) => {
-        return res.json();
-    })
-    .then((loadedQuestions) => {
-        questions = loadedQuestions;
-        startQuiz();
-    })
-
-function startQuiz() {
-    timerCountdown = 90;
-    currentQuestion = 0;
-    score = 0;
-    availableQuestions = [...questions];
-
+function startGame() {
+    secondsLeft = 90;
     startTimer();
-    getNewQuestion();
+
+    // Switch page views by changing classes for homepage and questions page
+    homePage.className = 'hide';
+    quizPage.className = 'show';
+
+    // Starting point for delivering questions
+    availableQuestions = [...questionsArray];
+    getQuestion();
 };
 
 function startTimer() {
-    timerInterval = setInterval(function () {
-        timerCountdown--;
-        timer.textContent = timerCountdown;
+    time = setInterval (function() {
+        secondsLeft--;
+        timerEl.textContent = "Time: " + secondsLeft;
 
-        if (timerCountdown <= 0) {
+        if (secondsLeft <= 0) {
             // Stops execution of action at set interval.
+            clearInterval(time)
             endQuiz();
-        };
-    }, 1000)
-};
-
-function getNewQuestion() {
-    for (i = 0; i < availableQuestions.length - 1; i++) {
-
-        // QUESTION 1
-        questionText.textContent = availableQuestions[i].question;
-        choicesText.textContent = availableQuestions[i].choices[0];
-        choicesText2.textContent = availableQuestions[i].choices[1];
-        choicesText3.textContent = availableQuestions[i].choices[2];
-        choicesText4.textContent = availableQuestions[i].choices[3];
-        choicesText5.textContent = availableQuestions[i].choices[4];
-        correctAnswer = availableQuestions[i].answer;
-    }
-
-    if (timerCountdown === 0) {
-        localStorage.setItem("quizScore", score);
-        return window.location.assign("/code-quiz/gameover.html");
-    }
-
-    questionsCounter++;
-    progressLabel.textContent = questionsCounter + "/6";
-    // update progress
-
-    var questionIndex = Math.floor(Math.random() * availableQuestions.length);
-    currentQuestion = availableQuestions[questionIndex];
-    question.innerText = currentQuestion.question;
-
-    choices.forEach((choice) => {
-        var number = choice.dataset["number"];
-        choice.innerText = currentQuestion["choice" + number];
-    });
-
-    correctAnswer = true;
-    console.log(availableQuestions);
-    checkAnswer();
-};
-
-choices.forEach((choice) => {
-    choiceBtn.addEventListener("click", (e) => {
-        if (!correctAnswer) return;
-
-        correctAnswer = false;
-        var selectChoice = e.target;
-        var selectAnswer = selectChoice.dataset["number"];
-
-        // ADDING PARAMETERS TO CLASS SO QUIZ CAN SEE CORRECT V. INCORRECT
-        let classToApply = "wrong";
-        if (selectAnswer == currentQuestion.answer) {
-            classToApply = "correct";
         }
+    }, 1000);
+}
 
-        // DEDUCT TIME/ SCORE FOR WRONG ANSWERS
-        if (classToApply == "wrong") {
-            timerCountdown -= 10;
-        }
-
-        // ASSIGNING ABOVE CLASSES TO ELEMENTS FOR ASSESSMENT
-        selectChoice.parentElement.classList.add(classToApply);
-
-        setTimeout(() => {
-            selectChoice.parentElement.classList.remove(classToApply);
-            getNewQuestion();
-        }, 1000);
-    });
-});
+function getQuestion() {
+    for (i = 0; i < availableQuestions.length - 1; i++) {}
+}
 
 // ADD EVENT LISTENERS FOR PAGE NAVIGATION BUTTONS
+startBtn.addEventListener('click', startGame);
 submitBtn.addEventListener('click', saveScore);
-playBtn.addEventListener('click', startQuiz);

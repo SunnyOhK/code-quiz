@@ -126,3 +126,25 @@ choices.forEach((choice) => {
         }, 1000);
     });
 });
+
+// TESTING WITH CONSOLE LOG TO MAKE SURE JSON FILE IS CONNECTED
+
+// PULL QUESTIONS FROM ARRAY IN JSON
+// let questions = [];
+// fetch('../questions.json')
+//     .then(res => res.json())
+//     .then(data => console.log(data))
+
+// fetch('../questions.json')
+//     .then((res) => {
+//         return res.json();
+//     })
+//     .then((loadedQuestions) => {
+//         questions = loadedQuestions;
+//         startQuiz();
+//     })
+
+// function startQuiz() {
+//     timerCountdown = 90;
+    
+// };
