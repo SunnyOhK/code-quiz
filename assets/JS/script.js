@@ -4,17 +4,23 @@ var homePage = document.querySelector('.home');
 var quizPage = document.querySelector('.qna-page');
 var hideEl = document.querySelector('.show');
 var showEl = document.querySelector('.hide');
-
+var submitBtn = document.querySelector('.submit-btn');
+var choiceBtn = document.getElementsByClassName('choice-btn');
 
 // DEFINE Q&A PAGE VARIABLES
 var timerEl = document.querySelector('.timer');
 var questionEl = document.querySelector('.question');
-var choiceEl = document.querySelector('.choice-btn');
+var choice1El = document.querySelector('#choice1');
+var choice2El = document.querySelector('#choice2');
+var choice3El = document.querySelector('#choice3');
+var choice4El = document.querySelector('#choice4');
+var choice5El = document.querySelector('#choice5');
 var textCorrect = document.querySelector('#correct');
 var textWrong = document.querySelector('#wrong');
+var submitScorePage = document.querySelector('#submit-score');
+
 
 // REMOVED Q&A FROM .JSON AND PUT INTO JS VARIABLE []
-var currentQuestion = 0;
 var questionsIndex = 0;
 var score = 0;
 
@@ -22,10 +28,6 @@ var score = 0;
 var time;
 var secondsLeft;
 var questionsCounter = 0;
-
-// MAKE SURE QUESTIONS START AT BEGINNING AND GO THROUGH DESIGNATED ARRAY ONCE
-var currentQuestion = 0;
-var availableQuestions = [];
 
 // DEFINE QUESTIONS AND CHOICES ARRAY
 var questionsArray = [
@@ -85,6 +87,18 @@ var questionsArray = [
     }
 ]
 
+// MAKE SURE QUESTIONS START AT BEGINNING AND GO THROUGH DESIGNATED ARRAY ONCE
+var currentQuestionIndex = 0;
+var availableQuestions = [];
+let currentQuestion = '';
+let currentC1 = '';
+let currentC2 = '';
+let currentC3 = '';
+let currentC4 = '';
+let currentC5 = '';
+var finalQuestion;
+var choiceValue;
+
 function startGame() {
     secondsLeft = 90;
     startTimer();
@@ -112,9 +126,61 @@ function startTimer() {
 }
 
 function getQuestion() {
-    for (i = 0; i < availableQuestions.length - 1; i++) {}
+
+// MAKE SURE ANSWER CHECK TEXT HAS RESET AT THE START OF EACH QUESTION
+
+    currentQuestion = questionsArray[currentQuestionIndex].question;
+    questionEl.textContent = currentQuestion;
+
+    currentC1 = questionsArray[currentQuestionIndex].c1;
+    choice1El.textContent = currentC1;
+
+    currentC2 = questionsArray[currentQuestionIndex].c2;
+    choice2El.textContent = currentC2;
+
+    currentC3 = questionsArray[currentQuestionIndex].c3;
+    choice3El.textContent = currentC3;
+
+    currentC4 = questionsArray[currentQuestionIndex].c4;
+    choice4El.textContent = currentC4;
+
+    currentC5 = questionsArray[currentQuestionIndex].c5;
+    choice5El.textContent = currentC5;
+
+    return;
+};
+
+
+// function checkAnswer() {
+
+//     // if (choiceValue == questionsArray[currentQuestionIndex].answer) {
+//     //     textCorrect.className = 'show';
+
+//     // } else {
+//     //     textWrong.className = 'show';
+//     // }
+
+
+//     // MOVE TO NEXT QUESTION AFTER SHORT DELAY FOR MESSAGE TO BE READ
+//     // currentQuestionIndex++;
+//     // setTimeout(getQuestion, 1500);
+//     getQuestion();
+// };
+
+function endQuiz() {
+    quizPage.className = 'hide';
+    submitScorePage.className = 'show';
+}
+
+function saveScore() {
+
 }
 
 // ADD EVENT LISTENERS FOR PAGE NAVIGATION BUTTONS
 startBtn.addEventListener('click', startGame);
+choiceBtn.addEventListener('click', getQuestion);
 submitBtn.addEventListener('click', saveScore);
+
+// if (availableQuestions.length == 0 || secondsLeft == 0) {
+//     endQuiz();
+// }
