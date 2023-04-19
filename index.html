@@ -47,11 +47,11 @@
 
             <!-- Instead of targeting by text, I can use data-number to differentiate between options -->
             <div class="choice-container">
-                <button class="choice-btn" data-number="1">choice</button>
-                <button class="choice-btn" data-number="2">choice</button>
-                <button class="choice-btn" data-number="3">choice</button>
-                <button class="choice-btn" data-number="4">choice</button>
-                <button class="choice-btn" data-number="5">choice</button>
+                <button class="choice-btn" id="choice1" value="1">choice</button>
+                <button class="choice-btn" id="choice2" value="2">choice</button>
+                <button class="choice-btn" id="choice3" value="3">choice</button>
+                <button class="choice-btn" id="choice4" value="4">choice</button>
+                <button class="choice-btn" id="choice5" value="5">choice</button>
             </div>
         </div>
 
@@ -66,6 +66,18 @@
         </footer>
     </section>
 
+    <section class="save-score-container hide" id="submit-score">
+        <h2>Your final score:</h2>
+        <p id="score-display">0</p>
+        <form>
+            <label>Enter your initials to save your score:&nbsp&nbsp</label>
+            <br>
+            <input type="text" id="initials-field" maxlength="3" placeholder="Enter your initials" />
+            <button type="submit" class="submit-btn" onclick="saveScore()">Submit</button>
+        </form>
+        <a href="/index.html" class="hs-btn" id="play-again">Play Again!</a>
+        <a href="/scoreboard.html" class="hs-btn" id="visit-scoreboard">Scoreboard</a>
+    </section>
     <script src="./assets/js/script.js"></script>
 </body>
 
