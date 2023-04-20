@@ -6,20 +6,11 @@ var hideEl = document.querySelector('.show');
 var showEl = document.querySelector('.hide');
 var submitBtn = document.querySelector('.submit-btn');
 var choiceBtn = document.body.querySelector('.choice-btn');
-
-// DEFINE Q&A PAGE VARIABLES
-// var choice2El = document.querySelector('#choice2');
-// var choice3El = document.querySelector('#choice3');
-// var choice4El = document.querySelector('#choice4');
-// var choice5El = document.querySelector('#choice5');
-var textCorrect = document.querySelector('#correct');
-var textWrong = document.querySelector('#wrong');
-var submitScorePage = document.querySelector('#submit-score');
-
+var submitScore = document.getElementById('submit-score');
 
 // REMOVED Q&A FROM .JSON AND PUT INTO JS VARIABLE []
 var questionsIndex = 0;
-var score = 0;  //will be calculated based on remaining time at end of quiz
+var score; 
 
 // SET STARTING POINT FOR TIMER
 var time;
@@ -116,12 +107,17 @@ function getChoices() {
 
 
 function checkAnswer(event) {
+    var feedbackTextBox = document.getElementById('right-wrong');
     console.log(event)
     console.log(event.target)
     if (event.target.id != "correct") {
         console.log("incorrect")
+        feedbackTextBox.textContent = 'Oooh... Incorrect!';
+        secondsLeft -= 10;
+
     } else {
-        console.log("correct")
+        console.log("correct");
+        feedbackTextBox.textContent = 'You are correct!';
     }
     if (isQuizOver()) {
         endQuiz()
@@ -132,29 +128,16 @@ function checkAnswer(event) {
 }
 
 
-function getNextQuestion() {
-    questionIxNo++;
-
-    if (questionIxNo >= questionsList.questions.length) {
-        endQuiz();
-
-    } else {
-        getQuestion(questionIxNo);
-    }
-
-    return;
-}
-
-// MOVE TO NEXT QUESTION AFTER SHORT DELAY FOR MESSAGE TO BE READ
-// currentQuestionIndex++;
-// setTimeout(getQuestion, 1500);
-//     getQuestion();
-// };
-
 function endQuiz() {
-    choiceBtn.innerHTML = '';
     quizPage.className = 'hide';
-    submitScorePage.className = 'show';
+    submitScore.className = 'show';
+
+    var score = document.getElementById('score-display');
+    score.textContent = secondsLeft;
+    console.log(score);
+
+    // ! STOPPING POINT: NOW WORK ON SAVING INITIALS INTO LOCAL STORAGE
+    saveScore();
 }
 
 function saveScore() {

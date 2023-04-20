@@ -54,19 +54,16 @@
         </div>
 
         <!-- Container to hold hidden message after user selects their answer -->
-        <footer class="check-container" id="right-wrong">
-            <div class="hide" id="correct">
-                <p>You are correct!</p>
-            </div>
-            <div class="hide" id="wrong">
-                <p>Oooh...wrong!</p>
+        <footer class="check-container">
+            <div >
+                <p id="right-wrong"></p>
             </div>
         </footer>
     </section>
 
     <section class="save-score-container hide" id="submit-score">
         <h2>Your final score:</h2>
-        <p id="score-display">0</p>
+        <p id="score-display"></p>
         <form>
             <label>Enter your initials to save your score:&nbsp&nbsp</label>
             <br>
@@ -76,6 +73,7 @@
         <a href="/index.html" class="hs-btn" id="play-again">Play Again!</a>
         <a href="/scoreboard.html" class="hs-btn" id="visit-scoreboard">Scoreboard</a>
     </section>
+
     <script src="./assets/js/script.js"></script>
 </body>
 
