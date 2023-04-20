@@ -164,6 +164,18 @@ h3 {
     text-align: left;
 }
 
+li {
+    font-size: 20px;
+    width: 38rem;
+    padding: 10px 30px 10px 20px;
+    margin-bottom: 9px;
+    text-align: left;
+    background-color: var(--blue);
+    color: white;
+    border-radius: 25px;
+    list-style-type: none;
+}
+
 .choice-btn {
     font-size: 20px;
     width: 38rem;
@@ -174,6 +186,11 @@ h3 {
     color: white;
     border-radius: 25px;
     list-style-type: none;
+}
+
+li:hover {
+    background-color: var(--yellow);
+    color: var(--grey);
 }
 
 .choice-btn:hover {
