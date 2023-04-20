@@ -6,7 +6,7 @@ var hideEl = document.querySelector('.show');
 var showEl = document.querySelector('.hide');
 var submitBtn = document.querySelector('.submit-btn');
 var choiceBtn = document.body.querySelector('.choice-btn');
-var choicePageList = document.querySelector('ul');
+var choiceBtnList = document.querySelector('ul');
 
 // DEFINE Q&A PAGE VARIABLES
 var timerEl = document.querySelector('.timer');
@@ -113,21 +113,21 @@ function getChoices(currentQuestionIndex) {
 
         choiceBtn.textContent = adjString;
         var adjString = document.createElement('li');
-        choicePageList.appendChild(choiceBtn);
+        choiceBtnList.appendChild(choiceBtn);
     }
 
-    checkAnswer();
+    // checkAnswer();
     return;
 }
 
 
 function checkAnswer(event) {
 
-    if (event.target != choiceBtn) {
-        textCorrect.className = 'show';
+    if (event.target != choiceBtnList) {
+        // textCorrect.className = 'show';
 
         if (!(event.target.id.includes('correct'))) {
-            textWrong.className = 'show';
+            // textWrong.className = 'show';
             secondsLeft -= 10;
         }    
         
@@ -139,8 +139,10 @@ function checkAnswer(event) {
 
 function getNextQuestion() {
     questionIxNo++;
+    
     if (questionIxNo >= questionsList.questions.length) {
         endQuiz();
+        
     } else {
         getQuestion(questionIxNo);
     }
@@ -166,6 +168,8 @@ function saveScore() {
 
 // ADD EVENT LISTENERS FOR PAGE NAVIGATION BUTTONS
 startBtn.addEventListener('click', startGame);
+// EVENT LISTENER FOR CHOICE SELECTION
+choiceBtnList.addEventListener('click', checkAnswer);
 // choiceBtn.addEventListener('click', getQuestion);
 submitBtn.addEventListener('click', saveScore);
 
