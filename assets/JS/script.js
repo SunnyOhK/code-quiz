@@ -6,23 +6,15 @@ var hideEl = document.querySelector('.show');
 var showEl = document.querySelector('.hide');
 var submitBtn = document.querySelector('.submit-btn');
 var choiceBtn = document.body.querySelector('.choice-btn');
-var choiceBtnList = document.querySelector('ul');
+var submitScore = document.getElementById('submit-score');
+var hsPage = document.querySelector('.highscores-container');
 
-// DEFINE Q&A PAGE VARIABLES
-var timerEl = document.querySelector('.timer');
-var questionEl = document.querySelector('.question');
-// var choice2El = document.querySelector('#choice2');
-// var choice3El = document.querySelector('#choice3');
-// var choice4El = document.querySelector('#choice4');
-// var choice5El = document.querySelector('#choice5');
-var textCorrect = document.querySelector('#correct');
-var textWrong = document.querySelector('#wrong');
-var submitScorePage = document.querySelector('#submit-score');
-
+// DEFINE THE INITIALS INPUT FIELD AT THE GLOBAL LEVEL TO BE CALLED IN FUNCTION
+var formEl = document.getElementById('initials-form');
 
 // REMOVED Q&A FROM .JSON AND PUT INTO JS VARIABLE []
 var questionsIndex = 0;
-var score = 0;  //will be calculated based on remaining time at end of quiz
+var score; 
 
 // SET STARTING POINT FOR TIMER
 var time;
@@ -50,8 +42,18 @@ var questionsList = {
     ]
 }
 
+
+
+function isQuizOver() {
+    if (secondsLeft < 1 || currentQuestionIndex === questionsList.questions.length) {
+        return true
+    }
+    return false
+}
+
+
 // MAKE SURE QUESTIONS START AT BEGINNING AND GO THROUGH DESIGNATED ARRAY ONCE
-var currentQuestionIndex = 0;  //this will start questions at the beginning
+var currentQuestionIndex;  //this will start questions at the beginning
 var availableQuestions = [];
 let currentQuestion = '';
 var finalQuestion;
@@ -59,7 +61,7 @@ var choiceValue;
 
 function startGame() {
     quizHasEnded = false;
-    questionIxNo = 0;
+    currentQuestionIndex = 0;
     secondsLeft = 90;
     startTimer();
 
@@ -67,111 +69,121 @@ function startGame() {
     homePage.className = 'hide';
     quizPage.className = 'show';
 
-    // Starting point for delivering questions
-    // availableQuestions = [...questionsArray];
-    getQuestion(questionIxNo);
-
-    return;
+    getQuestion();
 };
 
 function startTimer() {
-    time = setInterval (function() {
+    var timerEl = document.querySelector('.timer');
+    time = setInterval(function () {
         secondsLeft--;
         timerEl.textContent = "Time: " + secondsLeft;
-
-        if (quizHasEnded === true) {
+        if (isQuizOver()) {
             // Stops execution of action at set interval.
             clearInterval(time);
+            endQuiz();
             return;
         }
-        if (secondsLeft < 1) {
-            clearInterval(time);
-            endQuiz();
-        }
     }, 1000);
-
-    return;
 }
 
-function getQuestion(currentQuestionIndex) {
+function getQuestion() {
+    var questionEl = document.querySelector('.question');
     questionEl.textContent = questionsList.questions[currentQuestionIndex];
-    getChoices(currentQuestionIndex);
-
-    return;
+    getChoices();
 };
 
-function getChoices(currentQuestionIndex) {
-    // choiceBtnEl.innerHTML = '';
-
+function getChoices() {
+    var choiceBtnList = document.querySelector('ul');
+    choiceBtnList.innerHTML = '';
     for (let choiceIndex = 0; choiceIndex < questionsList.choices[currentQuestionIndex].length; choiceIndex++) {
         var choiceBtn = document.createElement('li');
         var adjString = questionsList.choices[currentQuestionIndex][choiceIndex];
 
         if (questionsList.choices[currentQuestionIndex][choiceIndex].includes('correct:')) {
+            choiceBtn.setAttribute("id", "correct")
             adjString = questionsList.choices[currentQuestionIndex][choiceIndex].substring(8, questionsList.choices[currentQuestionIndex][choiceIndex].length);
         }
-
         choiceBtn.textContent = adjString;
-        var adjString = document.createElement('li');
+        choiceBtn.addEventListener("click", checkAnswer)
         choiceBtnList.appendChild(choiceBtn);
     }
-
-    // checkAnswer();
-    return;
 }
 
 
 function checkAnswer(event) {
+    var feedbackTextBox = document.getElementById('right-wrong');
+    console.log(event)
+    console.log(event.target)
+    if (event.target.id != "correct") {
+        console.log("incorrect")
+        feedbackTextBox.textContent = 'Oooh... Incorrect!';
+        secondsLeft -= 10;
 
-    if (event.target != choiceBtnList) {
-        // textCorrect.className = 'show';
-
-        if (!(event.target.id.includes('correct'))) {
-            // textWrong.className = 'show';
-            secondsLeft -= 10;
-        }    
-        
-        getNextQuestion();
-    }
-
-    return;
-}
-
-function getNextQuestion() {
-    questionIxNo++;
-    
-    if (questionIxNo >= questionsList.questions.length) {
-        endQuiz();
-        
     } else {
-        getQuestion(questionIxNo);
+        console.log("correct");
+        feedbackTextBox.textContent = 'You are correct!';
     }
-    
-    return;
+    if (isQuizOver()) {
+        endQuiz()
+        return
+    }
+    currentQuestionIndex++
+    getQuestion()
 }
 
-    // MOVE TO NEXT QUESTION AFTER SHORT DELAY FOR MESSAGE TO BE READ
-    // currentQuestionIndex++;
-    // setTimeout(getQuestion, 1500);
-//     getQuestion();
-// };
 
 function endQuiz() {
-    choiceBtn.innerHTML = '';
     quizPage.className = 'hide';
-    submitScorePage.className = 'show';
+    submitScore.className = 'show';
+
+    var score = document.getElementById('score-display');
+    score.textContent = secondsLeft;
+    console.log(score);
+
+    saveScore();
 }
 
-function saveScore() {
+function saveScore(event) {
+    submitBtn.addEventListener('submit', saveScore);
+    
+    // var userInput;
+    var initialsEl = document.getElementById('enter-initials').value;
+
+    // WINDOW ALERT IF USER FAILS TO INPUT CONTENT
+    if (initialsEl.value == 0) {
+        alert('Please enter your initials.');
+        return;
+    }
+
+    // SAVE USER INPUT TO LOCAL STORAGE TO BE RETRIEVED ON LEADERBOARD
+    localStorage.setItem('userInput', initialsEl);
+
+    viewHighScores();
+}
+
+
+function viewHighScores() {
+    submitScore.className = 'hide';
+    hsPage.className = 'show';
+
+    var scoreBox = document.querySelector('.scoreboard');
+    var initialsHs = localStorage.getItem('userInput');
+    var scoreListEl = document.createElement('li');
+
+    scoreListEl.textContent = initialsHs;
+    scoreBox.appendChild(scoreListEl);
 
 }
+// PRINT INITIALS AND SCORE TO SCOREBOARD
+    // initialsEl.append('<li>' + shoppingItem + '</li>');
+
+
 
 // ADD EVENT LISTENERS FOR PAGE NAVIGATION BUTTONS
 startBtn.addEventListener('click', startGame);
 // EVENT LISTENER FOR CHOICE SELECTION
-choiceBtnList.addEventListener('click', checkAnswer);
 // choiceBtn.addEventListener('click', getQuestion);
-submitBtn.addEventListener('click', saveScore);
+
 
 // if (availableQuestions.length == 0 || secondsLeft == 0) {
 //     endQuiz();
