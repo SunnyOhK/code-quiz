@@ -148,6 +148,8 @@ function saveScore() {
     
     var initialsEl = document.getElementById('enter-initials');
     var userInitials = initialsEl.value.trim();
+    var finalScoreEl = document.getElementById('score-display');
+    var finalScore = parseInt(finalScoreEl.textContent);
     
     // THEN CALL THE FUNCTION THAT CHECKS AND SAVES THE ACTUAL USER INPUT
         if (userInitials === '') {
@@ -157,10 +159,8 @@ function saveScore() {
 
          // CREATE A KEY 'USERINITIALS' AS A UNIQUE IDENTIFIER FOR SAVED INPUT
         localStorage.setItem('userInitials', userInitials);
+        localStorage.setItem('finalScore', finalScore);
 
-        // CHECK TO SEE IF IT SAVES TO LOCAL STORAGE
-        console.log(localStorage.getItem('userInitials'));
-        
         window.location.href = 'scoreboard.html';
         }
     )};

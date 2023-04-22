@@ -10,10 +10,16 @@ var scoreList = document.getElementById('score-list');
 // THEN APPEND TO PAGE... USE 'APPENDCHILD' B/C <li> IS CHILD ELEMENT OF <ul>
 function addScore () {
 
-var lastInitials = localStorage.getItem('userInitials');
-var recentScoreEl = document.createElement('li');
+// CHECK TO SEE IF IT SAVES TO LOCAL STORAGE
+var userInitialsEl = localStorage.getItem('userInitials');
+var finalScoreEl = localStorage.getItem('finalScore');
 
-// ! CANNOT GET THE TEXT ONTO THE PAGE. APPLICATION TAB SHOWS KEY: USERINITIALS VALUE: SBO
-    recentScoreEl.textContent = lastInitials.value;
+console.log(userInitialsEl);
+console.log(finalScoreEl);
+
+
+var recentScoreEl = document.createElement('dt');
+recentScoreEl.textContent = 'userInitialsEl' + 'finalScoreEl';
+
     scoreList.appendChild(recentScoreEl);
 }

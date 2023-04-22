@@ -391,6 +391,12 @@ form {
     cursor: pointer;
 }
 
+#score-li {
+    font-size: 20px;
+    color: #000;
+    text-decoration: none;
+}
+
 /* CODE I MIGHT NEED LATER */
 
 /* #btn-container-secondary {
