@@ -7,6 +7,10 @@ var showEl = document.querySelector('.hide');
 var submitBtn = document.querySelector('.submit-btn');
 var choiceBtn = document.body.querySelector('.choice-btn');
 var submitScore = document.getElementById('submit-score');
+var hsPage = document.querySelector('.highscores-container');
+
+// DEFINE THE INITIALS INPUT FIELD AT THE GLOBAL LEVEL TO BE CALLED IN FUNCTION
+var formEl = document.getElementById('initials-form');
 
 // REMOVED Q&A FROM .JSON AND PUT INTO JS VARIABLE []
 var questionsIndex = 0;
@@ -136,19 +140,50 @@ function endQuiz() {
     score.textContent = secondsLeft;
     console.log(score);
 
-    // ! STOPPING POINT: NOW WORK ON SAVING INITIALS INTO LOCAL STORAGE
     saveScore();
 }
 
-function saveScore() {
+function saveScore(event) {
+    submitBtn.addEventListener('submit', saveScore);
+    
+    // var userInput;
+    var initialsEl = document.getElementById('enter-initials').value;
+
+    // WINDOW ALERT IF USER FAILS TO INPUT CONTENT
+    if (initialsEl.value == 0) {
+        alert('Please enter your initials.');
+        return;
+    }
+
+    // SAVE USER INPUT TO LOCAL STORAGE TO BE RETRIEVED ON LEADERBOARD
+    localStorage.setItem('userInput', initialsEl);
+
+    viewHighScores();
+}
+
+
+function viewHighScores() {
+    submitScore.className = 'hide';
+    hsPage.className = 'show';
+
+    var scoreBox = document.querySelector('.scoreboard');
+    var initialsHs = localStorage.getItem('userInput');
+    var scoreListEl = document.createElement('li');
+
+    scoreListEl.textContent = initialsHs;
+    scoreBox.appendChild(scoreListEl);
 
 }
+// PRINT INITIALS AND SCORE TO SCOREBOARD
+    // initialsEl.append('<li>' + shoppingItem + '</li>');
+
+
 
 // ADD EVENT LISTENERS FOR PAGE NAVIGATION BUTTONS
 startBtn.addEventListener('click', startGame);
 // EVENT LISTENER FOR CHOICE SELECTION
 // choiceBtn.addEventListener('click', getQuestion);
-submitBtn.addEventListener('click', saveScore);
+
 
 // if (availableQuestions.length == 0 || secondsLeft == 0) {
 //     endQuiz();
