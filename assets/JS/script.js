@@ -158,34 +158,13 @@ function saveScore() {
          // CREATE A KEY 'USERINITIALS' AS A UNIQUE IDENTIFIER FOR SAVED INPUT
         localStorage.setItem('userInitials', userInitials);
 
+        // CHECK TO SEE IF IT SAVES TO LOCAL STORAGE
         console.log(localStorage.getItem('userInitials'));
+        
+        window.location.href = 'scoreboard.html';
         }
     )};
 
 
-function viewHighScores() {
-        submitScore.className = 'hide';
-        hsPage.className = 'show';
-
-        // var scoreBox = document.querySelector('#listHighScores');
-        // var initialsHs = localStorage.getItem('userInput');
-        // var scoreListEl = document.createElement('li');
-
-        // scoreListEl.textContent = initialsHs;
-        // scoreBox.appendChild(scoreListEl);
-
-    }
-    // PRINT INITIALS AND SCORE TO SCOREBOARD
-    // initialsEl.append('<li>' + shoppingItem + '</li>');
-
-
-
-    // ADD EVENT LISTENERS FOR PAGE NAVIGATION BUTTONS
-    startBtn.addEventListener('click', startGame);
-// EVENT LISTENER FOR CHOICE SELECTION
-// choiceBtn.addEventListener('click', getQuestion);
-
-
-// if (availableQuestions.length == 0 || secondsLeft == 0) {
-//     endQuiz();
-// }
+// ADD EVENT LISTENERS FOR PAGE NAVIGATION BUTTONS
+startBtn.addEventListener('click', startGame);
