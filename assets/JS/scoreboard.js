@@ -1,13 +1,19 @@
-var homeBtn = document.querySelector('#start-qa');
-var hsBtn = document.querySelector('#view-hs');
+// DEFINE HOME AND CLEAR BUTTONS
+var homeBtn = document.getElementById('home-btn');
+var clearBtn = document.getElementById('clear-scores');
 
-const highScoreList = document.getElementById('highScoreList');
-const highScore = JSON.parse(localStorage.getItem('highScore')) || [];
-// console.log(highScore);
+// IDENTIFY THE SCORE LIST CONTAINER (ul) AND PULL SAVED INITIALS/SCORE FROM LOCAL STORAGE
+// ADD THE RECENTLY RETRIEVED SCORE TO THE LIST BY CREATING A NEW LI
+var scoreList = document.getElementById('score-list');
 
-highScoreList.innerHTML = highScore
-    .map((score) => {
-        // map takes an array of items and makes each of those items something else
-        return `<li class="high-score">${score.name} - ${score.score}</li>`;
-    })
-    .join("");
+
+// THEN APPEND TO PAGE... USE 'APPENDCHILD' B/C <li> IS CHILD ELEMENT OF <ul>
+function addScore () {
+
+var lastInitials = localStorage.getItem('userInitials');
+var recentScoreEl = document.createElement('li');
+
+// ! CANNOT GET THE TEXT ONTO THE PAGE. APPLICATION TAB SHOWS KEY: USERINITIALS VALUE: SBO
+    recentScoreEl.textContent = lastInitials.value;
+    scoreList.appendChild(recentScoreEl);
+}
