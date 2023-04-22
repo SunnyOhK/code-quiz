@@ -4,17 +4,18 @@ var homePage = document.querySelector('.home');
 var quizPage = document.querySelector('.qna-page');
 var hideEl = document.querySelector('.show');
 var showEl = document.querySelector('.hide');
-var submitBtn = document.querySelector('.submit-btn');
 var choiceBtn = document.body.querySelector('.choice-btn');
-var submitScore = document.getElementById('submit-score');
-var hsPage = document.querySelector('.highscores-container');
+var submitBtn = document.querySelector('.submit-btn');
+var submitScorePage = document.getElementById('submit-score');
+var hsPage = document.getElementById('hs-page');
+var initialsBoxEl = document.getElementById('initials-form');
 
 // DEFINE THE INITIALS INPUT FIELD AT THE GLOBAL LEVEL TO BE CALLED IN FUNCTION
-var formEl = document.getElementById('initials-form');
+// var formEl = document.getElementById('initials-form');
 
 // REMOVED Q&A FROM .JSON AND PUT INTO JS VARIABLE []
 var questionsIndex = 0;
-var score; 
+var score;
 
 // SET STARTING POINT FOR TIMER
 var time;
@@ -42,15 +43,12 @@ var questionsList = {
     ]
 }
 
-
-
 function isQuizOver() {
     if (secondsLeft < 1 || currentQuestionIndex === questionsList.questions.length) {
         return true
     }
     return false
 }
-
 
 // MAKE SURE QUESTIONS START AT BEGINNING AND GO THROUGH DESIGNATED ARRAY ONCE
 var currentQuestionIndex;  //this will start questions at the beginning
@@ -91,6 +89,7 @@ function getQuestion() {
     questionEl.textContent = questionsList.questions[currentQuestionIndex];
     getChoices();
 };
+
 
 function getChoices() {
     var choiceBtnList = document.querySelector('ul');
@@ -134,7 +133,7 @@ function checkAnswer(event) {
 
 function endQuiz() {
     quizPage.className = 'hide';
-    submitScore.className = 'show';
+    submitScorePage.className = 'show';
 
     var score = document.getElementById('score-display');
     score.textContent = secondsLeft;
@@ -143,44 +142,46 @@ function endQuiz() {
     saveScore();
 }
 
-function saveScore(event) {
-    submitBtn.addEventListener('submit', saveScore);
+function saveScore() {
+    initialsBoxEl.addEventListener('submit', function (event) {
+        event.preventDefault();
     
-    // var userInput;
-    var initialsEl = document.getElementById('enter-initials').value;
+    var initialsEl = document.getElementById('enter-initials');
+    var userInitials = initialsEl.value.trim();
+    
+    // THEN CALL THE FUNCTION THAT CHECKS AND SAVES THE ACTUAL USER INPUT
+        if (userInitials === '') {
+            alert('Please enter your initials.');
+            return;
+        }
 
-    // WINDOW ALERT IF USER FAILS TO INPUT CONTENT
-    if (initialsEl.value == 0) {
-        alert('Please enter your initials.');
-        return;
-    }
+         // CREATE A KEY 'USERINITIALS' AS A UNIQUE IDENTIFIER FOR SAVED INPUT
+        localStorage.setItem('userInitials', userInitials);
 
-    // SAVE USER INPUT TO LOCAL STORAGE TO BE RETRIEVED ON LEADERBOARD
-    localStorage.setItem('userInput', initialsEl);
-
-    viewHighScores();
-}
+        console.log(localStorage.getItem('userInitials'));
+        }
+    )};
 
 
 function viewHighScores() {
-    submitScore.className = 'hide';
-    hsPage.className = 'show';
+        submitScore.className = 'hide';
+        hsPage.className = 'show';
 
-    var scoreBox = document.querySelector('.scoreboard');
-    var initialsHs = localStorage.getItem('userInput');
-    var scoreListEl = document.createElement('li');
+        // var scoreBox = document.querySelector('#listHighScores');
+        // var initialsHs = localStorage.getItem('userInput');
+        // var scoreListEl = document.createElement('li');
 
-    scoreListEl.textContent = initialsHs;
-    scoreBox.appendChild(scoreListEl);
+        // scoreListEl.textContent = initialsHs;
+        // scoreBox.appendChild(scoreListEl);
 
-}
-// PRINT INITIALS AND SCORE TO SCOREBOARD
+    }
+    // PRINT INITIALS AND SCORE TO SCOREBOARD
     // initialsEl.append('<li>' + shoppingItem + '</li>');
 
 
 
-// ADD EVENT LISTENERS FOR PAGE NAVIGATION BUTTONS
-startBtn.addEventListener('click', startGame);
+    // ADD EVENT LISTENERS FOR PAGE NAVIGATION BUTTONS
+    startBtn.addEventListener('click', startGame);
 // EVENT LISTENER FOR CHOICE SELECTION
 // choiceBtn.addEventListener('click', getQuestion);
 
