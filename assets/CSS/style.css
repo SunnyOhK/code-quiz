@@ -59,12 +59,13 @@ h1 {
     color: var(--black);
     background-color: white;
     border: none;
-    cursor: pointer;
+    
 }
 
 .scoreboard-label:hover {
     font-weight: bold;
     text-shadow: 2px 2px rgb(42, 188, 42);
+    cursor: pointer;
 }
 
 img {
@@ -127,6 +128,7 @@ footer {
     background-color: var(--white);
     box-shadow: 0 0 10px 0 var(--mauve) inset, 0 0 20px 2px var(--mauve);
     border: 3px solid var(--mauve);
+    cursor: pointer;
 }
 
 .btn[disabled]:hover {
@@ -199,11 +201,13 @@ li {
 li:hover {
     background-color: var(--yellow);
     color: var(--grey);
+    cursor: pointer;
 }
 
 .choice-btn:hover {
     background-color: var(--yellow);
     color: var(--grey);
+    cursor: pointer;
 }
 
 .check-container {
@@ -234,37 +238,27 @@ li:hover {
     color: var(--white);
 }
 
-.next-btn:hover {
-    color: var(--grey);
-    text-shadow: 2px 2px 3px var(--blue);
-    background-color: var(--white);
-    box-shadow: 0 0 10px 0 var(--mauve) inset, 0 0 20px 2px var(--mauve);
-    border: 3px solid var(--mauve);
+.your-score-label {
+    text-align: center;
 }
-
-/* .save-score-container {
-    display: flex;
-    flex-direction: column;
-    margin-right: 10%;
-    margin-left: 30%;
-    padding-top: 2rem;
-    font-size: 25px;
-    padding-top: 30px;
-} */
 
 form {
-    margin-right: 10%;
-    margin-left: 30%;
     padding-top: 2rem;
     font-size: 25px;
-    padding-top: 30px;
     line-height: 2.1;
     justify-content: center;
+    padding-left: 12rem;
 }
+
+/* form {
+    margin-right: 10%;
+    margin-left: 30%;
+} */
 
 #score-display {
     font-size: 80px;
     line-height: 1px;
+    text-align: center;
 }
 
 input {
@@ -287,6 +281,7 @@ input {
     background-color: var(--white);
     box-shadow: 0 0 10px 0 var(--mauve) inset, 0 0 20px 2px var(--mauve);
     border: 3px solid var(--mauve);
+    cursor: pointer;
 }
 
 .hs-btn {
@@ -307,11 +302,6 @@ input {
     transition: 0.3s;
     font-weight: bolder;
     cursor: pointer;
-}
-
-form {
-    margin-right: 10%;
-    margin-left: 30%;
 }
 
 .hide {
@@ -340,8 +330,8 @@ h5 {
 }
 
 .scoreboard {
-    display: block;
-    margin-left: 64rem;
+    display: flex;
+    margin-left: 50rem;
     justify-content: center;
 }
 #score-list {
