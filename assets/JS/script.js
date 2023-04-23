@@ -7,8 +7,15 @@ var showEl = document.querySelector('.hide');
 var choiceBtn = document.body.querySelector('.choice-btn');
 var submitBtn = document.querySelector('.submit-btn');
 var submitScorePage = document.getElementById('submit-score');
-var hsPage = document.getElementById('hs-page');
 var initialsBoxEl = document.getElementById('initials-form');
+var finalScore = document.getElementById('score-display');
+
+// VARIABLES FOR HIGH SCORES PAGE DEFINE HOME AND CLEAR BUTTONS
+var scoreboardBtn = document.querySelector('.scoreboard-label')
+var highScorePage = document.querySelector('.highscores-page');
+var homeBtn = document.getElementById('home-btn');
+var clearBtn = document.getElementById('clear-scores');
+var scoreList = document.querySelector('.scoreboard');
 
 // DEFINE THE INITIALS INPUT FIELD AT THE GLOBAL LEVEL TO BE CALLED IN FUNCTION
 // var formEl = document.getElementById('initials-form');
@@ -43,6 +50,13 @@ var questionsList = {
     ]
 }
 
+function goToScoreboard () {
+    homePage.className = 'hide';
+    quizPage.className = 'hide';
+    submitScorePage.className = 'hide';
+    highScorePage.className = 'show';
+}
+
 function isQuizOver() {
     if (secondsLeft < 1 || currentQuestionIndex === questionsList.questions.length) {
         return true
@@ -57,10 +71,11 @@ let currentQuestion = '';
 var finalQuestion;
 var choiceValue;
 
+
 function startGame() {
     quizHasEnded = false;
     currentQuestionIndex = 0;
-    secondsLeft = 90;
+    secondsLeft = 75;
     startTimer();
 
     // Switch page views by changing classes for homepage and questions page
@@ -135,21 +150,13 @@ function endQuiz() {
     quizPage.className = 'hide';
     submitScorePage.className = 'show';
 
-    var score = document.getElementById('score-display');
-    score.textContent = secondsLeft;
-    console.log(score);
-
-    saveScore();
-}
-
-function saveScore() {
+    finalScore.textContent = secondsLeft;
     initialsBoxEl.addEventListener('submit', function (event) {
         event.preventDefault();
     
     var initialsEl = document.getElementById('enter-initials');
     var userInitials = initialsEl.value.trim();
-    var finalScoreEl = document.getElementById('score-display');
-    var finalScore = parseInt(finalScoreEl.textContent);
+
     
     // THEN CALL THE FUNCTION THAT CHECKS AND SAVES THE ACTUAL USER INPUT
         if (userInitials === '') {
@@ -157,14 +164,48 @@ function saveScore() {
             return;
         }
 
+    var score = finalScore.textContent;
+
          // CREATE A KEY 'USERINITIALS' AS A UNIQUE IDENTIFIER FOR SAVED INPUT
         localStorage.setItem('userInitials', userInitials);
-        localStorage.setItem('finalScore', finalScore);
+        localStorage.setItem('score', score);
 
-        window.location.href = 'scoreboard.html';
+        console.log(userInitials);
+        console.log(score);
+        
+        // window.location.href = 'scoreboard.html';
+        saveScore();
         }
     )};
 
 
+function saveScore() {
+    submitScorePage.className = 'hide';
+    highScorePage.className = 'show';
+
+    // PULL INITIALS AND SCORE FROM LOCAL STORAGE
+    var userInitials = localStorage.getItem('userInitials');
+    var finalScore = localStorage.getItem('score');
+
+    // CREATE NEW <a> WITHIN EXISITNG <p> THEN APPEND TO PAGE... USE 'APPENDCHILD' B/C <a> WILL BE NESTED WITHIN <p>
+    var newHighScore = document.createElement('a');
+
+    newHighScore.textContent = userInitials + ' ' + finalScore;
+    scoreList.appendChild(newHighScore);
+
+    // TO KEEP NEW PLAYER SCORES FROM OVERWRITING THE EXISTING VALUE, I NEED TO SAVE EACH VALUE INTO LOCAL STORAGE AGAIN --> I WILL HAVE TO CREATE A NEW ARRAY OF INITIALS+SCORE TO KEEP THEM SEPARATED
+}
+
+function clearScores() {
+    // FIRST CLEAR LOCAL STORAGE
+    localStorage.clear();
+
+    // THEN CLEAR THE EXISTING SCORES FROM THE PAGE
+    scoreList.innerHTML = '';
+}
+
+
 // ADD EVENT LISTENERS FOR PAGE NAVIGATION BUTTONS
 startBtn.addEventListener('click', startGame);
+clearBtn.addEventListener('click', clearScores);
+scoreboardBtn.addEventListener('click', goToScoreboard);
