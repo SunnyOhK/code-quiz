@@ -248,12 +248,9 @@ form {
     line-height: 2.1;
     justify-content: center;
     padding-left: 12rem;
-}
-
-/* form {
     margin-right: 10%;
     margin-left: 30%;
-} */
+}
 
 #score-display {
     font-size: 80px;
