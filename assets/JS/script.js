@@ -50,13 +50,6 @@ var questionsList = {
     ]
 }
 
-function goToScoreboard () {
-    homePage.className = 'hide';
-    quizPage.className = 'hide';
-    submitScorePage.className = 'hide';
-    highScorePage.className = 'show';
-}
-
 function isQuizOver() {
     if (secondsLeft < 1 || currentQuestionIndex === questionsList.questions.length) {
         return true
@@ -153,30 +146,31 @@ function endQuiz() {
     finalScore.textContent = secondsLeft;
     initialsBoxEl.addEventListener('submit', function (event) {
         event.preventDefault();
-    
-    var initialsEl = document.getElementById('enter-initials');
-    var userInitials = initialsEl.value.trim();
 
-    
-    // THEN CALL THE FUNCTION THAT CHECKS AND SAVES THE ACTUAL USER INPUT
+        var initialsEl = document.getElementById('enter-initials');
+        var userInitials = initialsEl.value.trim();
+
+
+        // THEN CALL THE FUNCTION THAT CHECKS AND SAVES THE ACTUAL USER INPUT
         if (userInitials === '') {
             alert('Please enter your initials.');
             return;
         }
 
-    var score = finalScore.textContent;
+        var score = finalScore.textContent;
 
-         // CREATE A KEY 'USERINITIALS' AS A UNIQUE IDENTIFIER FOR SAVED INPUT
+        // CREATE A KEY 'USERINITIALS' AS A UNIQUE IDENTIFIER FOR SAVED INPUT
         localStorage.setItem('userInitials', userInitials);
         localStorage.setItem('score', score);
 
         console.log(userInitials);
         console.log(score);
-        
+
         // window.location.href = 'scoreboard.html';
         saveScore();
-        }
-    )};
+    }
+    )
+};
 
 
 function saveScore() {
@@ -187,14 +181,42 @@ function saveScore() {
     var userInitials = localStorage.getItem('userInitials');
     var finalScore = localStorage.getItem('score');
 
-    // CREATE NEW <a> WITHIN EXISITNG <p> THEN APPEND TO PAGE... USE 'APPENDCHILD' B/C <a> WILL BE NESTED WITHIN <p>
-    var newHighScore = document.createElement('a');
+    // GET EXISTING HIGH SCORES FROM LOCAL STORAGE
+    var existingHighScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
-    newHighScore.textContent = userInitials + ' ' + finalScore;
-    scoreList.appendChild(newHighScore);
+    // ADD NEW HIGH SCORE TO ARRAY AND SAVE TO LOCAL STORAGE
+    existingHighScores.push({ initials: userInitials, score: finalScore });
+    localStorage.setItem('highScores', JSON.stringify(existingHighScores));
 
-    // TO KEEP NEW PLAYER SCORES FROM OVERWRITING THE EXISTING VALUE, I NEED TO SAVE EACH VALUE INTO LOCAL STORAGE AGAIN --> I WILL HAVE TO CREATE A NEW ARRAY OF INITIALS+SCORE TO KEEP THEM SEPARATED
+    // CREATE NEW <a> FOR EACH HIGH SCORE IN THE ARRAY AND APPEND TO PAGE
+    for (let i = 0; i < existingHighScores.length; i++) {
+        var newHighScore = document.createElement('a');
+        newHighScore.textContent = existingHighScores[i].initials + ' ' + existingHighScores[i].score;
+        scoreList.appendChild(newHighScore);
+    }
 }
+
+// USE 'LOADSTORAGE' FOR EVENT LISTENER ON THE 'SCOREBOARD' NAVIGATION BUTTON THAT IS VISIBLE IN EVERY PAGE OF THE QUIZ APP
+
+function loadStorage() {
+    homePage.className = 'hide';
+    quizPage.className = 'hide';
+    submitScorePage.className = 'hide';
+    highScorePage.className = 'show';
+
+    var savedScores = JSON.parse(localStorage.getItem('highScores')) || [];
+    if (savedScores.length == 0) {
+        return
+    }
+
+    // CREATE NEW <a> FOR EACH HIGH SCORE IN THE ARRAY AND APPEND TO PAGE
+    for (let i = 0; i < savedScores.length; i++) {
+        var newHighScore = document.createElement('a');
+        newHighScore.textContent = savedScores[i].initials + ' ' + savedScores[i].score;
+        scoreList.appendChild(newHighScore);
+    }
+}
+
 
 function clearScores() {
     // FIRST CLEAR LOCAL STORAGE
@@ -208,4 +230,4 @@ function clearScores() {
 // ADD EVENT LISTENERS FOR PAGE NAVIGATION BUTTONS
 startBtn.addEventListener('click', startGame);
 clearBtn.addEventListener('click', clearScores);
-scoreboardBtn.addEventListener('click', goToScoreboard);
+scoreboardBtn.addEventListener('click', loadStorage);

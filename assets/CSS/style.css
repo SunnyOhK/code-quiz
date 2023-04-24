@@ -327,14 +327,14 @@ h5 {
 }
 
 .scoreboard {
-    display: flex;
     margin-left: 50rem;
     justify-content: center;
 }
+
 #score-list {
     text-align: center;
     font-size: 40px;
-    padding-top: 30px;
+    padding-top: 15px;
     line-height: 30px;
     word-spacing: 48px;
     border: 1px solid var(--black);
@@ -342,6 +342,13 @@ h5 {
     width: 300px;
     box-shadow: 0 0 10px 0 var(--yellow) inset,
         0 0 20px 2px var(--yellow);
+}
+
+a {
+    display: block;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    border-bottom: 1.5px solid var(--grey);
 }
 
 .button-box {
