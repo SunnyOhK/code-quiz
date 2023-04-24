@@ -55,6 +55,8 @@ function goToScoreboard () {
     quizPage.className = 'hide';
     submitScorePage.className = 'hide';
     highScorePage.className = 'show';
+
+    loadStorage();
 }
 
 function isQuizOver() {
@@ -187,13 +189,33 @@ function saveScore() {
     var userInitials = localStorage.getItem('userInitials');
     var finalScore = localStorage.getItem('score');
 
-    // CREATE NEW <a> WITHIN EXISITNG <p> THEN APPEND TO PAGE... USE 'APPENDCHILD' B/C <a> WILL BE NESTED WITHIN <p>
-    var newHighScore = document.createElement('a');
+    // GET EXISTING HIGH SCORES FROM LOCAL STORAGE
+    var existingHighScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
-    newHighScore.textContent = userInitials + ' ' + finalScore;
-    scoreList.appendChild(newHighScore);
+    // ADD NEW HIGH SCORE TO ARRAY AND SAVE TO LOCAL STORAGE
+    existingHighScores.push({ initials: userInitials, score: finalScore });
+    localStorage.setItem('highScores', JSON.stringify(existingHighScores));
 
-    // TO KEEP NEW PLAYER SCORES FROM OVERWRITING THE EXISTING VALUE, I NEED TO SAVE EACH VALUE INTO LOCAL STORAGE AGAIN --> I WILL HAVE TO CREATE A NEW ARRAY OF INITIALS+SCORE TO KEEP THEM SEPARATED
+    // CREATE NEW <a> FOR EACH HIGH SCORE IN THE ARRAY AND APPEND TO PAGE
+    for (let i = 0; i < existingHighScores.length; i++) {
+        var newHighScore = document.createElement('a');
+        newHighScore.textContent = existingHighScores[i].initials + ' ' + existingHighScores[i].score;
+        scoreList.appendChild(newHighScore);
+    }
+}
+
+function loadStorage() {
+    var savedScores = JSON.parse(localStorage.getItem('highScores')) || [];
+    if (savedScores.length == 0) {
+        return
+    }
+
+    // CREATE NEW <a> FOR EACH HIGH SCORE IN THE ARRAY AND APPEND TO PAGE
+    for (let i = 0; i < savedScores.length; i++) {
+        var newHighScore = document.createElement('a');
+        newHighScore.textContent = savedScores[i].initials + ' ' + savedScores[i].score;
+        scoreList.appendChild(newHighScore);
+    }
 }
 
 function clearScores() {
