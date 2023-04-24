@@ -50,15 +50,6 @@ var questionsList = {
     ]
 }
 
-function goToScoreboard () {
-    homePage.className = 'hide';
-    quizPage.className = 'hide';
-    submitScorePage.className = 'hide';
-    highScorePage.className = 'show';
-
-    loadStorage();
-}
-
 function isQuizOver() {
     if (secondsLeft < 1 || currentQuestionIndex === questionsList.questions.length) {
         return true
@@ -155,30 +146,31 @@ function endQuiz() {
     finalScore.textContent = secondsLeft;
     initialsBoxEl.addEventListener('submit', function (event) {
         event.preventDefault();
-    
-    var initialsEl = document.getElementById('enter-initials');
-    var userInitials = initialsEl.value.trim();
 
-    
-    // THEN CALL THE FUNCTION THAT CHECKS AND SAVES THE ACTUAL USER INPUT
+        var initialsEl = document.getElementById('enter-initials');
+        var userInitials = initialsEl.value.trim();
+
+
+        // THEN CALL THE FUNCTION THAT CHECKS AND SAVES THE ACTUAL USER INPUT
         if (userInitials === '') {
             alert('Please enter your initials.');
             return;
         }
 
-    var score = finalScore.textContent;
+        var score = finalScore.textContent;
 
-         // CREATE A KEY 'USERINITIALS' AS A UNIQUE IDENTIFIER FOR SAVED INPUT
+        // CREATE A KEY 'USERINITIALS' AS A UNIQUE IDENTIFIER FOR SAVED INPUT
         localStorage.setItem('userInitials', userInitials);
         localStorage.setItem('score', score);
 
         console.log(userInitials);
         console.log(score);
-        
+
         // window.location.href = 'scoreboard.html';
         saveScore();
-        }
-    )};
+    }
+    )
+};
 
 
 function saveScore() {
@@ -204,7 +196,14 @@ function saveScore() {
     }
 }
 
+// USE 'LOADSTORAGE' FOR EVENT LISTENER ON THE 'SCOREBOARD' NAVIGATION BUTTON THAT IS VISIBLE IN EVERY PAGE OF THE QUIZ APP
+
 function loadStorage() {
+    homePage.className = 'hide';
+    quizPage.className = 'hide';
+    submitScorePage.className = 'hide';
+    highScorePage.className = 'show';
+
     var savedScores = JSON.parse(localStorage.getItem('highScores')) || [];
     if (savedScores.length == 0) {
         return
@@ -218,6 +217,7 @@ function loadStorage() {
     }
 }
 
+
 function clearScores() {
     // FIRST CLEAR LOCAL STORAGE
     localStorage.clear();
@@ -230,4 +230,4 @@ function clearScores() {
 // ADD EVENT LISTENERS FOR PAGE NAVIGATION BUTTONS
 startBtn.addEventListener('click', startGame);
 clearBtn.addEventListener('click', clearScores);
-scoreboardBtn.addEventListener('click', goToScoreboard);
+scoreboardBtn.addEventListener('click', loadStorage);
