@@ -209,7 +209,8 @@ function loadStorage() {
         return
     }
 
-    // CREATE NEW <a> FOR EACH HIGH SCORE IN THE ARRAY AND APPEND TO PAGE
+    // CLEAR INNERHTML BEFORE PULLING FROM STORAGE ON THE LEADERBOARD PAGE OR IT WILL KEEP DUPLICATING THE VALUES OVER AND OVER AGAIN!
+    scoreList.innerHTML = '';
     for (let i = 0; i < savedScores.length; i++) {
         var newHighScore = document.createElement('a');
         newHighScore.textContent = savedScores[i].initials + ' ' + savedScores[i].score;
